@@ -28,7 +28,7 @@ import { convertDateTime } from 'utils/time';
 export const resultsToTableData = (results, eventType) => {
   switch (eventType) {
     case 'High Jump':
-      return resultsToHighJumpTableData(results);
+      return resultsToHighJumpTableData(results, eventType);
     default:
       const data = [];
       results.forEach((result) => {
@@ -113,10 +113,10 @@ export const getAgeGroupsForClubRecords = (ageGroup) => {
   return [];
 };
 
-export const resultsToHighJumpTableData = (results) => {
+export const resultsToHighJumpTableData = (results, eventType) => {
   const data = [];
   results.forEach((result) => {
-    data.push({
+    let res = {
       ...result,
       result: `${result.bestClearedHeight} m`,
       date: `${convertDateTime(result.timestamp || '').date} ${convertDateTime(result.timestamp || '').time}`,
@@ -128,7 +128,13 @@ export const resultsToHighJumpTableData = (results) => {
           {`${attempt.attempt1} ${attempt.attempt2} ${attempt.attempt3}`}
         </div>
       )),
-    });
+      eventType,
+      resultID: result.athleteId,
+    }
+    for (let i=0; i<result?.heightAttempts.length; i++) {
+      res[`heightAttempts${i}`] = result?.heightAttempts[i]
+    }
+    data.push(res);
   });
 
   return data;

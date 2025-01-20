@@ -8,6 +8,7 @@ import {
   updateAggEventStatus,
   updateResults,
   editEventAttempts,
+  editHighJumpResults,
 } from 'api/resultApi';
 import {
   editColumnPrimaryField,
@@ -87,6 +88,7 @@ const ResultEditPopup = ({
   };
 
   const saveResults = async () => {
+    console.log('tableData', tableData);
     try {
       if (tableData?.length > 0) {
         if (tableData[0].unit === 'm') {
@@ -147,6 +149,30 @@ const ResultEditPopup = ({
             attempts,
           });
           return true;
+        } else if (tableData[0].eventType === 'High Jump') {
+          const attempts = [];
+          tableData.forEach((result) => {
+            for (let i=0; i<result?.heightAttempts.length; i++) {
+              attempts.push({
+                resultID: result[`heightAttempts${i}`].resultId,
+                height: result[`heightAttempts${i}`].height,
+                attempt1: result[`heightAttempts${i}`].attempt1,
+                attempt2: result[`heightAttempts${i}`].attempt2,
+                attempt3: result[`heightAttempts${i}`].attempt3
+              });
+            }
+          })
+          await editHighJumpResults({
+            eventType,
+            ageGroup,
+            gender,
+            roundType,
+            clubID,
+            meetID,
+            attempts,
+          });
+
+          return true
         } else {
           const requestBody = tableData.map((result) => ({
             resultID: result.resultID,

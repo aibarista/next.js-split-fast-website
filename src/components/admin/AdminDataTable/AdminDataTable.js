@@ -72,6 +72,7 @@ const AdminDataTable = ({
   });
 
   const sortedData = [...filteredData].sort((a, b) => {
+    console.log('filteredData', filteredData)
     if (sortConfig.key) {
       const aValue = a[sortConfig.key];
       const bValue = b[sortConfig.key];
@@ -248,44 +249,18 @@ const AdminDataTable = ({
                             case 'highJumpAttempt':
                               return (
                                 <>
-                                  <EditableInput
-                                    value={
-                                      row[column.accessor]?.status !==
-                                      'No Throw'
-                                        ? Number(
-                                            row[column.accessor]?.distance || 0
-                                          ).toFixed(2)
-                                        : '0.00'
-                                    }
-                                    inputValueChange={(value) =>
-                                      handleValueChange(
-                                        row[primaryField],
-                                        column.accessor,
-                                        value,
-                                        'distance'
-                                      )
-                                    }
-                                  />
                                   <select
                                     className={styles.cellSelectHighJump}
                                     value={
-                                      row[column.accessor]?.status || 'No Throw'
+                                      row[column.accessor]?.attempt1
                                     }
                                     onChange={(e) => {
                                       handleValueChange(
                                         row[primaryField],
                                         column.accessor,
                                         e.target.value,
-                                        'status'
+                                        'attempt1'
                                       );
-                                      if (e.target.value === 'No throw') {
-                                        handleValueChange(
-                                          row[primaryField],
-                                          column.accessor,
-                                          0,
-                                          'distance'
-                                        );
-                                      }
                                     }}
                                   >
                                     {column.options?.map((option, index) => (
@@ -294,24 +269,46 @@ const AdminDataTable = ({
                                       </option>
                                     ))}
                                   </select>
-                                  <EditableInput
+                                  <select
+                                    className={styles.cellSelectHighJump}
                                     value={
-                                      row[column.accessor]?.status !==
-                                      'No Throw'
-                                        ? Number(
-                                            row[column.accessor]?.distance || 0
-                                          ).toFixed(2)
-                                        : '0.00'
+                                      row[column.accessor]?.attempt2
                                     }
-                                    inputValueChange={(value) =>
+                                    onChange={(e) => {
                                       handleValueChange(
                                         row[primaryField],
                                         column.accessor,
-                                        value,
-                                        'distance'
-                                      )
+                                        e.target.value,
+                                        'attempt2'
+                                      );
+                                    }}
+                                  >
+                                    {column.options?.map((option, index) => (
+                                      <option key={index} value={option}>
+                                        {option}
+                                      </option>
+                                    ))}
+                                  </select>
+                                  <select
+                                    className={styles.cellSelectHighJump}
+                                    value={
+                                      row[column.accessor]?.attempt3
                                     }
-                                  />
+                                    onChange={(e) => {
+                                      handleValueChange(
+                                        row[primaryField],
+                                        column.accessor,
+                                        e.target.value,
+                                        'attempt3'
+                                      );
+                                    }}
+                                  >
+                                    {column.options?.map((option, index) => (
+                                      <option key={index} value={option}>
+                                        {option}
+                                      </option>
+                                    ))}
+                                  </select>
                                 </>
                               );
                             case 'text':

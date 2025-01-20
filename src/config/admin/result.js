@@ -3,13 +3,16 @@ import { defaultBodyStyle } from './clubMembers';
 // Define separate options for different event types
 export const throwAttemptOptions = ['OK', 'Foul', 'No throw'];
 export const jumpAttemptOptions = ['OK', 'Foul', 'No jump'];
+export const highResultAttemptOptions = ['.', '-', 'X', 'O'];
 
-//export const attemptOptions = ['OK', 'Foul', 'No throw'];
 const isJumpingEvent = (eventType) => {
-  return ['Long Jump', 'High Jump', 'Triple Jump'].includes(eventType);
+  return ['Long Jump', 'Triple Jump'].includes(eventType);
 };
 
 export const getAttemptOptionsForEvent = (eventType) => {
+  if (eventType === 'High Jump') {
+    return highResultAttemptOptions;
+  }
   return isJumpingEvent(eventType) ? jumpAttemptOptions : throwAttemptOptions;
 };
 
@@ -21,7 +24,6 @@ export const getResultAttemptCount = (results) => {
     return results[0]?.attempts.length;
   }
   return 0;
-
 };
 
 export const resultColumns = (results) => {
@@ -520,7 +522,7 @@ export const editFieldEventColumns = (results, eventType) => {
   if (eventType === 'High Jump') {
     for (let index = 0; index < results[0]?.highJumpAttempts.length; index++) {
       columns.push({
-        accessor: `highJumpAttempt${index + 1}`,
+        accessor: `heightAttempts${index}`,
         label: `Height ${index + 1}`,
         checkbox: false,
         sortable: false,

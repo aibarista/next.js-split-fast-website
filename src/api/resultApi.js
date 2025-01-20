@@ -210,6 +210,70 @@ export const editEventAttempts = async ({
   }
 };
 
+
+/**
+ * FIELD EVENTS
+ *
+ * Using the new edit-high-jump-results API for to update highJump results for field events.
+ *
+ * This function sends a PUT request to update multiple attempts in an aggregated field event.
+ * Must only be used for field events (e.g., throws, jumps) where attempts have distance measurements.
+ *
+ * @param {Object} params - The parameters for updating attempts
+ * @param {string} params.eventType - The type of event
+ * @param {string} params.ageGroup - The age group category
+ * @param {string} params.gender - The gender category
+ * @param {string} params.roundType - The type of round
+ * @param {string} params.clubID - The club identifier
+ * @param {string} params.meetID - The meet identifier
+ * @param {Array} params.attempts - Array of attempt objects {
+ *    "resultID": "string",
+      "height": 0,
+      "attempt1": "string",
+      "attempt2": "string",
+      "attempt3": "string"}[]
+ * @returns {Promise} A Promise resolving to the API response
+ */
+export const editHighJumpResults = async ({
+  eventType,
+  ageGroup,
+  gender,
+  roundType,
+  clubID,
+  meetID,
+  attempts,
+}) => {
+  console.log('Making API request to edit-high-jump-results:');
+  console.log('URL:', '/api/Results/edit-high-jump-results');
+  console.log('Request body:', {
+    eventType,
+    ageGroup,
+    gender,
+    roundType,
+    clubID,
+    meetID,
+    attempts,
+  });
+  try {
+    const response = await authApi.put('/results/edit-high-jump-results', {
+      eventType,
+      ageGroup,
+      gender,
+      roundType,
+      clubID,
+      meetID,
+      attempts,
+    });
+    console.log('API response:', response);
+    return response;
+  } catch (error) {
+    console.error('API error:', error);
+    console.error('Error response:', error.response);
+    throw error;
+  }
+};
+
+
 /**
  * Fetches events based on their publishing status.
  *
