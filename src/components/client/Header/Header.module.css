@@ -1,0 +1,121 @@
+.hpHlogImage {
+  width: 225px;
+  height: 70px;
+  display: block;
+}
+
+.hpHlogImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hpHheaderBtn {
+  font-size: 21px;
+  font-family: Raleway;
+  color: #313131;
+  margin-right: 90px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.redBtn {
+  color: #cf2c47;
+}
+
+.hpHloginText {
+  font-size: 18px;
+  font-family: Raleway;
+  color: #cf2c47;
+}
+
+.hpHheaderRegisterBtn {
+  font-size: 18px;
+  font-family: Raleway;
+  background-color: #cf2c47;
+  color: white;
+  width: fit-content;
+  border-radius: 6px;
+  padding: 14.5px 20px;
+  text-decoration: none;
+  display: block;
+}
+
+.hpHeaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1270px;
+  padding: 0 50px;
+  margin: auto;
+  width: 100%;
+  height: 131px;
+}
+
+.hpHrightParts {
+  display: flex;
+  align-items: center;
+}
+
+.hpHheaderLoginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 50px;
+  text-decoration: none;
+}
+
+.hpHloginImage {
+  width: 17px;
+  height: 17px;
+  margin-right: 12px;
+}
+
+.hpHloginImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.hpHeader {
+  background: #ffffff;
+}
+
+@media screen and (max-width: 1100px) {
+  .hpHheaderBtn {
+    margin-right: 50px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hpHheaderBtn {
+    display: none;
+  }
+
+  .hpHeaderWrapper {
+    padding: 0 20px;
+  }
+
+  .hpHlogImage {
+    width: 150px;
+  }
+
+  .hpHheaderLoginBtn {
+    margin-right: 20px;
+  }
+
+  .hpHheaderRegisterBtn {
+    padding: 10px;
+  }
+
+  .hpHloginText {
+    display: none;
+  }
+
+  .hpHloginImage {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,230 @@
+.athletesTableWrapper {
+  overflow: auto;
+  box-shadow: #00000029 0 0 12px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.athletesTable {
+  min-width: 900px;
+}
+
+.athletesTableHeader {
+  display: flex;
+  padding: 11px 9px 11px 9px;
+  height: 60px;
+  background: #f1f1f2;
+  border-radius: 5px 5px 0 0;
+  border-top: 2px solid #dcdfe0;
+  border-right: 2px solid #dcdfe0;
+  border-left: 2px solid #dcdfe0;
+  align-items: center;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 323px;
+  height: 100%;
+  margin-right: 22px;
+}
+
+.inputWrapper input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #efeff0;
+  padding-left: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.inputWrapper input::placeholder {
+  color: #aeb7bb;
+}
+
+.inputWrapper svg {
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 9px;
+  cursor: pointer;
+  fill: #aeb7bb;
+}
+
+.filterWrapper {
+  display: flex;
+  margin-right: 27px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filterText {
+  font-size: 12px;
+  color: #313131;
+  margin-right: 4px;
+}
+
+.filterImage {
+  height: 18px;
+  width: 18px;
+}
+
+.filterImage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  fill: #313131;
+}
+
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sortText {
+  font-size: 12px;
+  color: #313131;
+  margin-right: 5px;
+}
+
+.sortImage {
+  height: 18px;
+  width: 18px;
+}
+
+.sortImage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  fill: #313131;
+}
+
+.athletesRows {
+  border-left: 2px solid #aeb7bb;
+  border-right: 2px solid #aeb7bb;
+  border-bottom: 2px solid #aeb7bb;
+  border-radius: 0 0 5px 5px;
+  background: white;
+}
+
+.fullBorder {
+  border: 2px solid #aeb7bb;
+}
+
+.athletesRow {
+  display: grid;
+  grid-template-columns: 909fr 1539fr 349fr 742fr 1424fr 1001fr 945fr;
+  border-top: 1px solid #efeff0;
+  align-items: center;
+}
+
+.headerCheckbox {
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  border: 2px solid #889398;
+  margin-right: 10px;
+}
+
+.headerCell {
+  padding: 28px 0 16px;
+  border-right: 1px solid #efeff0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 12px;
+  color: #24282a;
+  font-weight: 600;
+}
+
+.headerCell:last-child {
+  border-right: none;
+}
+
+.attemptsHeaderCell {
+  display: grid;
+}
+
+.headerSortImage {
+  width: 18px;
+  height: 18px;
+}
+
+.headerSortImage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  margin-left: 8px;
+  fill: #aeb7bb;
+}
+
+.bodyCheckbox {
+  min-width: 17px;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  border: 1px solid #889398;
+  margin-right: 9px;
+}
+
+.viewManage.childCell {
+  display: flex;
+  justify-content: space-between;
+}
+
+.viewManageTxt {
+  font-size: 12px;
+  color: #cf2c47;
+  cursor: pointer;
+}
+
+.childCell {
+  border-right: 1px solid #efeff0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 6px 0 15px;
+  font-size: 12px;
+  color: #24282a;
+}
+
+.viewManage {
+  padding-left: 26px;
+  padding-right: 25px;
+  min-width: 142px;
+}
+
+.childCell:last-child {
+  border-right: none;
+}
+
+.cellInput {
+  width: calc(60% - 10px);
+  margin-right: 10px;
+}
+
+.cellTextInput {
+  width: 70px;
+  margin-left: 10px;
+}
+
+.cellSelect {
+  width: 40%;
+}
+
+.cellSelectHighJump {
+  width: 40%;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 992px) {
+  .inputWrapper {
+    width: 200px;
+  }
+}

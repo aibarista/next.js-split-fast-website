@@ -1,0 +1,41 @@
+.formContainer {
+  max-width: 361px;
+}
+
+.sectionHeading {
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: 88px;
+  margin-bottom: 50px;
+}
+
+.inputItems {
+  margin-bottom: 59px;
+}
+
+.paymentMethods {
+  width: 536px;
+  height: 163px;
+  background-color: #efeff0;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+  .paymentMethods {
+    width: unset;
+  }
+
+  .sectionHeading {
+    margin-top: 45px;
+  }
+
+  .formContainer {
+    max-width: unset;
+  }
+}

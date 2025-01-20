@@ -1,0 +1,92 @@
+.adminPageOptionWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.dataTypeOptions {
+  display: flex;
+  align-items: center;
+}
+
+.dataTypeOption {
+  font-size: 21px;
+  color: #889398;
+  font-weight: 600;
+  margin-right: 3px;
+  padding: 8px 24px 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dataTypeOption:last-child {
+  margin-right: 0;
+}
+
+.dataTypeOption.active {
+  color: #313131;
+  background-color: #f2f3f3;
+}
+
+.viewTypeOptions {
+  display: flex;
+  align-items: center;
+}
+
+.viewTypeOption {
+  display: flex;
+  margin-right: 9px;
+  padding: 11px 24px 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.viewTypeOption.active {
+  background-color: #f2f3f3;
+}
+
+.viewTypeOption:last-child {
+  margin-right: 0;
+}
+
+.viewTypeOptionImage {
+  width: 21px;
+  height: 21px;
+  margin-right: 4px;
+}
+
+.viewTypeOptionImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.viewTypeOptionText {
+  font-size: 16px;
+  color: #24282a;
+}
+
+@media screen and (max-width: 992px) {
+  .adminPageOptionWrapper {
+    display: block;
+  }
+
+  .dataTypeOptions {
+    margin-bottom: 10px;
+  }
+
+  .dataTypeOption {
+    font-size: 15px;
+    padding: 8px 14px 8px 14px;
+  }
+
+  .viewTypeOption {
+    padding: 11px 14px 8px 14px;
+  }
+
+  .viewTypeOptionText {
+    font-size: 15px;
+  }
+}

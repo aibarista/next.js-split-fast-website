@@ -1,0 +1,106 @@
+.meetCard {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  position: relative;
+  background: var(--white-color);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 16px var(--shadow-color);
+  cursor: pointer;
+}
+
+.meetCardImageWrapper {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.meetCardImage {
+  width: 100%;
+  position: relative;
+  padding-top: 31.7%;
+}
+
+.meetCardImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  object-fit: cover;
+}
+
+.meetCardTagWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--red-color);
+  display: flex;
+  color: var(--white-color);
+  align-items: center;
+  padding: 5px 24px 5px 12px;
+  border-radius: 4px 0 4px 0;
+}
+
+.meetCardTrainingTagWrapper {
+  background-color: var(--green-color);
+  padding-right: 16px;
+}
+
+.meetCardTagImage {
+  width: 20px;
+  height: 20px;
+  margin-right: 7px;
+  font-weight: 700;
+}
+
+.meetCardTagImage svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--white-color);
+}
+
+.meetCardTagText {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.meetCardBody {
+  padding: 19px 23px 25px 23px;
+}
+
+.meetCardTitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #313131;
+}
+
+.meetCardTime {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--red-color);
+  margin-bottom: 12px;
+}
+
+.meetCardTime span {
+  color: var(--bright-grey-color);
+}
+
+.detailContainer {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.detailLabel {
+  color: var(--red-color);
+  margin-right: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.detailValue {
+  color: var(--bright-black-color);
+  font-size: 14px;
+}

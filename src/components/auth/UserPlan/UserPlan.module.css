@@ -1,0 +1,38 @@
+.sectionItem {
+  width: 290px;
+  height: 533px;
+  flex: none;
+  border: #aeb7bb 2px solid;
+  border-radius: 4px;
+  margin-right: 32px;
+  background-color: #efeff0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sectionItem:last-child {
+  margin-right: 0;
+}
+
+.sectionItem span {
+  display: none;
+}
+
+.sectionItemActive {
+  border: 4px #cf2c47 solid;
+}
+
+.sectionItemActive span {
+  display: block;
+  width: fit-content;
+  font-family: 'Raleway';
+  font-size: 14px;
+}
+
+@media screen and (max-width: 790px) {
+  .sectionItem {
+    margin-right: 14px;
+  }
+}

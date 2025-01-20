@@ -1,0 +1,40 @@
+.clubContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1211px;
+  margin: auto;
+  padding: 0 20px;
+  text-decoration: none;
+}
+
+.clubImage {
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
+  flex: none;
+}
+
+.clubImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: 500px;
+  overflow: hidden;
+}
+
+.clubName {
+  font-size: 14px;
+  color: #313131;
+}
+
+@media screen and (max-width: 992px) {
+  .clubContainer {
+    padding: 10px;
+  }
+
+  .clubName {
+    font-size: 14px;
+  }
+}

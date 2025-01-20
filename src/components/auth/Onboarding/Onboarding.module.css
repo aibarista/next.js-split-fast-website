@@ -1,0 +1,137 @@
+.onboardingPopup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1170px;
+    max-height: 696px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    padding: 35px 31px 35px;
+}
+
+.onboardingPopupOverlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #F9FBFCCC;
+}
+
+.onboardingImage {
+    max-width: 536px;
+    height: 196px;
+    background: #EFEFF0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    font-family: Raleway;
+    font-size: 14px;
+    margin-bottom: 98px;
+    margin-top: 102px;
+}
+
+.onboardingText {
+    font-size: 24px;
+    font-family: 'Raleway';
+    font-weight: bold;
+    text-align: center;
+    max-width: 856px;
+    margin: auto;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+    margin-bottom: 50px;
+}
+
+.skipTourTae {
+    position: absolute;
+    top: 31px;
+    right: 31px;
+    color: #cf2c47;
+    font-family: 'Raleway';
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.obNextBtn {
+    background: #cf2c47;
+    border-radius: 4px;
+    color: white;
+    font-family: 'Raleway';
+    width: fit-content;
+    padding: 20.5px 30px;
+    position: absolute;
+    bottom: 35px;
+    right: 31px;
+    cursor: pointer;
+}
+
+.onboardingTitle {
+    font-size: 40px;
+    font-family: 'Raleway';
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 39px;
+}
+
+.onboardingPaginate {
+    width: 14px;
+    height: 14px;
+    border-radius: 99px;
+    background-color: #EFEFF0;
+    margin-right: 20px;
+}
+
+.onboardingPaginates {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.onboardingPaginate:last-child {
+    margin-right: 0;
+}
+
+.onboardingPaginateActive {
+    background-color: #CF2C47;
+}
+
+.onboardingPopOverflow {
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.setClubBtn {
+    background-color: #CF2C47;
+    color: white;
+    margin: 0 auto 35px;
+    font-family: 'Raleway';
+    font-size: 16px;
+    border-radius: 4px;
+    max-width: 361px;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+@media screen and (max-width:992px) {
+    .onboardingPopup {
+        max-height: unset;
+    }
+
+    .onboardingTitle {
+        font-size: 28px;
+    }
+
+    .onboardingText {
+        font-size: 20px;
+    }
+}

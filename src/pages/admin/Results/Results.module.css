@@ -1,0 +1,10 @@
+.subtitle {
+  color: #889398;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 640px) {
+  .subtitle {
+    margin-bottom: 5px;
+  }
+}

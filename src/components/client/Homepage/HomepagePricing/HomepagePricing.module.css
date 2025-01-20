@@ -1,0 +1,110 @@
+.normalHeading {
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hpPsectionWrapper {
+  max-width: 1270px;
+  margin: auto;
+  padding: 0 50px;
+}
+
+.sectionItems {
+  display: flex;
+}
+
+.sectionItem {
+  margin-right: 41px;
+  width: 100%;
+  min-width: 1px;
+  height: 661px;
+  border: #aeb7bb solid 2px;
+  background-color: #efeff0;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionItem:last-child {
+  margin-right: 0;
+}
+
+.sectionItemActive {
+  border: #cf2c47 4px solid;
+}
+
+.itemBtn {
+  position: absolute;
+  bottom: 34px;
+  font-size: 21px;
+  font-family: 'Raleway';
+  color: white;
+  background: #5f6368;
+  padding: 18px;
+  width: 80%;
+  max-width: 275px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.sectionItemActive .itemBtn {
+  background: #cf2c47;
+}
+
+.sectionItem span {
+  font-family: 'Raleway';
+  font-size: 14.5px;
+}
+
+.hpStexts p:last-child {
+  margin-bottom: 0;
+}
+
+.hpSplitFastSection {
+  margin-bottom: 198px;
+}
+
+.hpPricing {
+  margin-bottom: 198px;
+}
+
+.hpPricing .normalHeading {
+  margin-bottom: 63px;
+}
+
+@media screen and (max-width: 992px) {
+  .normalHeading {
+    font-size: 35px;
+  }
+
+  .sectionItems {
+    overflow: auto;
+    padding: 0 20px;
+    margin: 0 -20px;
+  }
+
+  .sectionItem {
+    margin-right: 20px;
+    min-width: 300px;
+  }
+
+  .hpPsectionWrapper {
+    padding: 0 20px;
+  }
+
+  .hpSplitFastSection {
+    margin-bottom: 99px;
+  }
+
+  .hpPricing {
+    margin-bottom: 99px;
+  }
+}

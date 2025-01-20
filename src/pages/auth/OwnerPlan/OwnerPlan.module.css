@@ -1,0 +1,58 @@
+a.logIn {
+  background-color: #cf2c47;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  display: block;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway';
+  font-size: 16px;
+  max-width: 361px; /* Changed style */
+}
+
+.sectionHeading {
+  font-family: 'Raleway';
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 61px;
+  margin-bottom: 25px;
+}
+
+.sectionSubheading {
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 24px;
+  letter-spacing: -0.2px;
+  margin-bottom: 34px;
+}
+
+.sectionSubheading a {
+  color: #cf2c47;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.sectionItems {
+  display: flex;
+  overflow: auto;
+  margin-bottom: 49px;
+}
+
+@media screen and (max-width: 790px) {
+  .sectionHeading {
+    margin-top: 45px;
+  }
+
+  .section_holder_wrapper {
+    background: white;
+    padding: 28px 20px;
+  }
+
+  .sectionItems {
+    padding: 0 20px;
+    margin: 0 -20px 49px;
+  }
+}

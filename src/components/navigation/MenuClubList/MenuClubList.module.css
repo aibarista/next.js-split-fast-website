@@ -1,0 +1,143 @@
+.menuClubListContainer {
+  position: relative;
+}
+
+.menuClubListContainerActive .menuClubList {
+  display: block;
+}
+
+.menuClubListContainerActive .menuClubListWrapper {
+  opacity: 1;
+  z-index: 1;
+}
+
+.selectedClub {
+  display: flex;
+  align-items: center;
+  padding: 15px 22px 16px 25px;
+  border-bottom: 2px solid #efeff0;
+  cursor: pointer;
+}
+
+.selectedClubImage {
+  width: 57px;
+  height: 57px;
+  flex: none;
+  margin-right: 15px;
+}
+
+.selectedClubImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.selectedClubInfo {
+  margin-top: 1px;
+}
+
+.selectedClubName {
+  font-weight: 600;
+  font-size: 16px;
+  color: #24282a;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+}
+
+.selectedClubRole {
+  font-weight: 500;
+  font-size: 14px;
+  color: #5f6368;
+}
+
+.selectedClub .image {
+  margin-left: auto;
+}
+
+.selectedClub .image svg {
+  display: block;
+}
+
+.menuClubList {
+  display: none;
+  position: absolute;
+  bottom: -10px;
+  transform: translate(-50%, 100%);
+  box-shadow: #00000029 0 0 12px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  width: calc(100% - 23px);
+  height: fit-content;
+  left: calc(50% - 1px);
+  background-color: white;
+}
+
+.menuClubListWrapper {
+  padding: 15px 0 7px;
+  position: relative;
+}
+
+.menuClubItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #efeff0;
+  padding: 8px 6px 9px 19px;
+  cursor: pointer;
+}
+
+.menuClubItem:first-child {
+  padding-top: 0;
+}
+
+.menuClubItem:last-child {
+  border: none;
+}
+
+.menuClubItemImage {
+  width: 35px;
+  height: 35px;
+  flex: none;
+  margin-right: 15px;
+}
+
+.menuClubItemImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.menuClubName {
+  font-size: 14px;
+  color: #313131;
+}
+
+.menuClubItem .image {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  margin-left: auto;
+}
+
+.menuClubItem .image svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.addClubButton {
+  font-weight: 600;
+  font-size: 16px;
+  color: #cf2c47;
+  letter-spacing: 0;
+  display: block;
+  padding: 12px 17px;
+}
+
+@media screen and (max-width: 992px) {
+  .menuClubList {
+    padding-bottom: 7px;
+  }
+}

@@ -1,0 +1,50 @@
+.hpSplitFastSection {
+  margin-bottom: 198px;
+}
+
+.hpSsectionWrapper {
+  position: relative;
+  max-width: 1078px;
+  margin: auto;
+  padding: 0 50px;
+}
+
+.normalHeading {
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hpStexts p {
+  text-align: center;
+  font-family: 'Raleway';
+  font-size: 21px;
+  letter-spacing: 0.2px;
+  line-height: 1.8;
+  margin: 0;
+  margin-bottom: 39px;
+}
+
+.hpStexts p:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .hpSplitFastSection {
+    margin-bottom: 99px;
+  }
+
+  .hpSsectionWrapper {
+    padding: 0 20px;
+  }
+
+  .normalHeading {
+    font-size: 35px;
+  }
+
+  .hpStexts p {
+    font-size: 18px;
+  }
+}

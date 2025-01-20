@@ -1,0 +1,24 @@
+.page {
+  position: relative;
+  background: #f9fbfc;
+  padding: 0;
+  min-height: calc(100vh - 171px);
+}
+
+.pageWrapper {
+  max-width: 1271px;
+  margin: auto;
+  padding: 0 50px;
+  position: relative;
+}
+
+@media screen and (max-width: 992px) {
+  .page {
+    padding: 0 0 26px;
+    min-height: calc(100vh - 184px);
+  }
+
+  .pageWrapper {
+    padding: 0 15px;
+  }
+}

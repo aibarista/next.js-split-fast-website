@@ -1,0 +1,27 @@
+.adminBlockContainer {
+  width: 100%;
+  min-width: 1px;
+  margin-right: 41px;
+}
+
+.adminBlockContainer:last-child {
+  margin: 0;
+}
+
+.adminBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 19px;
+}
+
+.adminBlockTitle {
+  margin: 0;
+  padding-right: 15px;
+}
+
+@media screen and (max-width: 1200px) {
+  .adminBlockContainer {
+    margin: 0 0 36px;
+  }
+}

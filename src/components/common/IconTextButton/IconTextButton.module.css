@@ -1,0 +1,15 @@
+.buttonStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  cursor: pointer;
+}
+
+.buttonIcon img,
+.buttonIcon svg {
+  width: 100%;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+}

@@ -1,0 +1,125 @@
+.clubContainer {
+  max-width: 361px;
+}
+
+.sectionHeading {
+  font-size: 70px;
+  font-weight: 700;
+  margin-bottom: 66px;
+}
+
+.sectionHeading span {
+  color: #cf2c47;
+}
+
+.clubNameWrapper label {
+  color: #313131;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 11px;
+}
+
+.clubNameWrapper {
+  margin-bottom: 50px;
+}
+
+.clubNameWrapper input[type='text'] {
+  display: block;
+  font-size: 14px;
+  width: 100%;
+  height: 48px;
+  border: 2px solid #efeff0;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+
+.clubNameWrapper input[type='text']::placeholder {
+  color: #313131;
+}
+
+.addImageWrapper {
+  width: 210px;
+  height: 210px;
+  border-radius: 1000px;
+  box-shadow: 0 0 16px rgba(225, 237, 243, 0.5);
+  border: 3px solid #efeff0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #ffffff 0 0 no-repeat padding-box;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+.addImageText {
+  font-size: 14px;
+  color: #313131;
+}
+
+.clubDescription label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.clubDescription input {
+  display: block;
+  width: 100%;
+  height: 168px;
+}
+
+.clubDescription textarea {
+  display: block;
+  width: 100%;
+  height: 168px;
+  font-size: 14px;
+  border: 2px solid #efeff0;
+  border-radius: 6px;
+  padding: 15px 14px;
+  margin-bottom: 5px;
+}
+
+.clubDescription {
+  margin-bottom: 90px;
+}
+
+.clubDescription span {
+  margin-right: 0;
+  margin-left: auto;
+  display: block;
+  width: fit-content;
+  font-size: 12px;
+}
+
+.setClubBtn {
+  width: 272px;
+  background: #cf2c47;
+  border-radius: 4px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+}
+
+.addImage {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 14px;
+}
+
+.addImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .sectionHeading {
+    font-size: 50px;
+    margin-bottom: 40px;
+  }
+}

@@ -1,0 +1,92 @@
+.bdpHeader {
+  padding: 32px 0 19px;
+  background: #f9fbfc;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.bdpHeader .bdpHeaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  padding: 0 24px;
+}
+
+.bdpHeader .leftPart {
+  display: flex;
+  align-items: center;
+}
+
+.bdpHeader .hamburgerImage {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex: none;
+  margin-right: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #efeff0;
+  border-radius: 2px;
+}
+
+.bdpHeader .hamburgerImage svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+  object-fit: contain;
+}
+
+.bdpHeader .logoImage {
+  width: 150px;
+  height: 50px;
+}
+
+.bdpHeader .logoImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.bdpHeader .rightPart {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.dbpNotification .publishCloseBtn {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 41px;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.publishCloseBtn img {
+  display: block;
+}
+
+@media screen and (max-width: 992px) {
+  .bdpHeader {
+    padding: 32px 0;
+  }
+
+  .bdpHeader .bdpHeaderWrapper {
+    padding: 0 17px;
+  }
+
+  .bdpHeader .logoImage {
+    display: none;
+  }
+
+  .bdpHeader .hamburgerImage {
+    margin-right: 0;
+  }
+}

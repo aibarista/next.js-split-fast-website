@@ -1,0 +1,25 @@
+.rows {
+  overflow: auto;
+}
+
+.wrapper {
+  min-width: 500px;
+}
+
+.row {
+  display: flex;
+  padding: 25px 23px 23px 18px;
+  background-color: white;
+  justify-content: space-between;
+  border-radius: 4px;
+  align-items: center;
+  margin-bottom: 4px;
+  box-shadow: #efeff0 0 0 16px;
+}
+
+.cell {
+  color: #24282a;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0 5px;
+}

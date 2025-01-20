@@ -1,0 +1,23 @@
+.container {
+  margin-top: 25px;
+}
+
+.label {
+  font-size: 14px;
+  color: #889398;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 18px;
+  color: #24282a;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    min-width: unset !important;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}

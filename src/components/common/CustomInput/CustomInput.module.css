@@ -1,0 +1,44 @@
+.lInputWrapper {
+  margin-bottom: 20px;
+}
+
+.lInputWrapper:last-child {
+  margin-bottom: 0;
+}
+
+.lInputWrapper label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 11px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputWrapper img {
+  width: 21px;
+  height: 19px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  cursor: pointer;
+}
+
+.inputWrapper input {
+  width: 100%;
+  border: 2px solid #efeff0;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.inputWrapper input::placeholder {
+  color: #313131;
+  opacity: 0.5;
+  font-size: 14px;
+}
+
+img.iconEyeHide {
+  display: none;
+}

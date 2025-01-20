@@ -1,0 +1,26 @@
+.registerContent {
+  margin-top: 79px;
+  max-width: 525px;
+}
+
+.registerHeader {
+  font-family: 'Raleway';
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 33px;
+}
+
+.accountTypes {
+  margin-bottom: 76px;
+}
+
+@media screen and (max-width: 992px) {
+  .registerContent {
+    margin-top: 50px;
+    max-width: unset;
+  }
+
+  .registerHeader {
+    font-size: 28px;
+  }
+}

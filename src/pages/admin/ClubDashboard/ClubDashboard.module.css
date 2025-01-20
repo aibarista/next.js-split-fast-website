@@ -1,0 +1,84 @@
+.competitionTraining {
+  position: relative;
+  background: #f9fbfc;
+}
+
+.competitionTrainingWrapper {
+  margin: auto;
+  padding-bottom: 30px;
+  position: relative;
+  display: flex;
+}
+
+.upcomingPas {
+  background-color: #f9fbfc;
+}
+
+.upcomingPasWrapper {
+  margin: auto;
+  padding-bottom: 36px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.upcomingWrapper {
+  width: 100%;
+}
+
+.upcomingCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  grid-gap: 20px 20px;
+}
+
+.resultHighlights {
+  background-color: #f9fbfc;
+}
+
+.resultHighlightsWrapper {
+  margin: auto;
+  padding-bottom: 30px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1200px) {
+  .competitionTrainingWrapper {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .upcomingWrapper {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .competitionTrainingWrapper {
+    padding: 0;
+  }
+
+  .upcomingPas {
+    padding-bottom: 31px;
+  }
+
+  .upcomingPasWrapper {
+    padding: 0;
+    flex-direction: column;
+  }
+
+  .upcomingWrapper {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .upcomingCards {
+    grid-template-columns: 1fr;
+    grid-gap: 14px 20px;
+  }
+}

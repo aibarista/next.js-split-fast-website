@@ -1,0 +1,4 @@
+.cellInput {
+    width: calc(60% - 10px);
+    margin-right: 10px;
+}

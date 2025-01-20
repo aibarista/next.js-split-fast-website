@@ -1,0 +1,18 @@
+.buttons {
+    display: flex;
+}
+
+.viewButton {
+    color: #cf2c47;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.viewButton svg, .editButton svg {
+    width: 20px;
+    height: 20px;
+    fill: #cf2c47;
+    margin-left: 5px;
+}

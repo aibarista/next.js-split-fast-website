@@ -1,0 +1,39 @@
+.profileMenu {
+  display: flex;
+  align-items: center;
+  flex: none;
+  text-decoration: none;
+  position: relative;
+}
+
+.profileMenuActive .menuContainer {
+  display: block;
+}
+
+.menuContainer {
+  position: absolute;
+  bottom: -10px;
+  transform: translateY(100%);
+  right: -2px;
+  box-shadow: #00000029 0 0 12px;
+  border-radius: 4px;
+  min-width: 170px;
+  padding: 8px 0 4px;
+  display: none;
+  background-color: white;
+}
+
+.menuItem {
+  font-size: 14px;
+  color: #313131;
+  padding: 9px 12px 10px;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: #efeff0;
+}
+
+.menuItemActive {
+  padding-top: 12px;
+}

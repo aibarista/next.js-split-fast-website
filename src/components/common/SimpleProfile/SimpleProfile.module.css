@@ -1,0 +1,32 @@
+.profileContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.userName {
+  font-size: 14px;
+  margin-right: 12px;
+  color: #313131;
+}
+
+.userImage {
+  width: 31px;
+  height: 31px;
+  border-radius: 500px;
+  overflow: hidden;
+  flex: none;
+}
+
+.userImage img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 992px) {
+  .userName {
+    display: none;
+  }
+}

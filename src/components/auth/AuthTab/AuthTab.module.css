@@ -1,0 +1,24 @@
+.loginRegisterHeader {
+  display: flex;
+}
+
+.lrHead {
+  left: 345px;
+  opacity: 1;
+  font-family: 'Raleway';
+  font-size: 26px;
+  font-weight: bold;
+  color: #c1c1c1;
+  margin-right: 61px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.lrHead:last-child {
+  margin-right: 0;
+}
+
+.lrHeadActive {
+  color: #313131;
+  pointer-events: none;
+}

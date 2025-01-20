@@ -1,0 +1,94 @@
+:root {
+  --main-font-family: 'Raleway';
+  --black-color: #000;
+  --bright-black-color: #24282a;
+  --grey-color: #313131;
+  --red-color: #cf2c47;
+  --dark-intense-red-color: #e74c3c;
+  --green-color: #44c58d;
+  --bright-grey-color: #aeb7bb;
+  --ghost-white-color: #f9fbfc;
+  --tab-active-color: #f2f3f3;
+  --shadow-color: #efeff0;
+  --white-color: #fff;
+}
+
+body,
+input,
+textarea,
+select {
+  font-family: var(--main-font-family), sans-serif;
+}
+
+.heading1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--black-color);
+}
+
+.heading2 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--bright-black-color);
+}
+
+.link {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--red-color);
+  text-decoration: none;
+}
+
+.tableCellLink {
+  color: var(--red-color);
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.tableCellLink svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--red-color);
+  margin-left: 5px;
+}
+
+.error {
+  color: var(--dark-intense-red-color);
+  font-size: 10px;
+}
+
+.tabOption {
+  font-size: 21px;
+  color: var(--bright-grey-color);
+  font-weight: 600;
+  margin-right: 3px;
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.tabOption.active {
+  color: var(--grey-color);
+  background-color: var(--tab-active-color);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+@media screen and (max-width: 992px) {
+  .tabOption {
+    padding: 8px 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .link {
+    font-size: 14px;
+  }
+}

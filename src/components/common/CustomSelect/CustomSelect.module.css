@@ -1,0 +1,48 @@
+.inputItem {
+  margin-bottom: 20px;
+}
+
+.inputItem label {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 11px;
+}
+
+.inputItem select {
+  width: 100%;
+  border: 2px solid #efeff0;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  appearance: none;
+}
+
+.inputWrapper,
+.selectWrapper {
+  position: relative;
+}
+
+.inputWrapper option {
+  color: #aeb7bb;
+  font-size: 14px;
+}
+
+img.selectImage {
+  width: 10px;
+  height: 19px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  cursor: pointer;
+}
+
+.posterText {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 17px;
+  color: #aeb7bb;
+  font-size: 14px;
+}

@@ -1,0 +1,75 @@
+.clubDisciplinesTitle {
+  color: #313131;
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.clubDisciplines {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clubDiscipline {
+  display: flex;
+  background-color: #cf2c47;
+  align-items: center;
+  padding: 9px 13px 10px 15px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.clubDiscipline:last-child {
+  margin-right: 0;
+}
+
+.clubDisciplineText {
+  color: #ffffff;
+  font-size: 14px;
+  margin-right: 42px;
+}
+
+.crossImage {
+  width: 7px;
+  height: 7px;
+  cursor: pointer;
+}
+
+.crossImage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.crossImage svg path {
+  fill: #fefcfc;
+}
+
+.createNew {
+  margin-top: 12px;
+  margin-bottom: 69px;
+}
+
+.createNew input {
+  font-size: 14px;
+  border: 2px solid #efeff0;
+  border-radius: 6px;
+  padding: 15px 14px;
+  opacity: 0.5;
+  color: #313131;
+  width: 100%;
+  letter-spacing: 0.2px;
+  height: 48px;
+}
+
+@media screen and (max-width: 992px) {
+  .clubDisciplines {
+    flex-wrap: wrap;
+  }
+
+  .clubDiscipline {
+    margin-bottom: 8px;
+  }
+}

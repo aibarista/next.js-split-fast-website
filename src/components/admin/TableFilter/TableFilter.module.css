@@ -1,0 +1,128 @@
+.filterPopupOverlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(49, 49, 49, 0.8);
+  z-index: 2;
+  display: none;
+}
+
+.filterPopupOverlay.active {
+  display: block;
+}
+
+.filterPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  max-width: 746px;
+  max-height: 1029px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff 0 0 no-repeat padding-box;
+  padding: 40px 0 35px;
+  z-index: 1;
+}
+
+.filterPopupContainer {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 50px;
+  padding: 0 20px;
+  color: #313131;
+}
+
+.inputContainer {
+  margin: 0 auto 63px;
+  max-width: 381px;
+  padding: 0 10px;
+}
+
+.publishButtons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.publishButton {
+  width: 274px;
+  background-color: #889398;
+  border-radius: 6px;
+  font-size: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 9px;
+  height: 60px;
+  pointer-events: none;
+  font-weight: 600;
+  color: white;
+}
+
+.publishButton.active {
+  background-color: #cf2c47;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.publishCloseBtn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 63px;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.publishCloseBtn img {
+  display: block;
+}
+
+.publishButton:last-child {
+  margin: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .filterPopup {
+    max-height: unset;
+    padding-top: 20px;
+  }
+
+  .title {
+    margin-top: 40px;
+    font-size: 25px;
+  }
+
+  .inputContainer {
+    margin-bottom: 50px;
+  }
+
+  .publishButtons {
+    display: block;
+    margin: auto;
+    width: fit-content;
+    max-width: 90%;
+  }
+
+  .publishButton {
+    max-width: 100%;
+    margin-right: 0;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+}

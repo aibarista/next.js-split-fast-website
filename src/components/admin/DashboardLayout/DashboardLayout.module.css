@@ -1,0 +1,26 @@
+.pageContainer {
+  background: var(--ghost-white-color);
+  padding-bottom: 20px;
+}
+
+.pageHolder {
+  max-width: 1271px;
+  margin: 0 auto;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 1360px) {
+  .pageContainer {
+    padding: 0 15px;
+  }
+
+  .heading {
+    padding: 0;
+  }
+}

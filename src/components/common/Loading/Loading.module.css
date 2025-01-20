@@ -1,0 +1,22 @@
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.adminPageLoadingContainer {
+  height: calc(100vh - 171px);
+}
+
+.loadingGif {
+  width: 60px;
+  height: 60px;
+}
+
+@media screen and (max-width: 992px) {
+  .adminPageLoadingContainer {
+    height: calc(100vh - 184px);
+  }
+}

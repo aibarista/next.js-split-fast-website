@@ -1,0 +1,22 @@
+.goBack {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.goBackImage {
+  width: 20px;
+  height: 17px;
+  margin-right: 10px;
+}
+
+.goBackImage img {
+  width: 100%;
+  display: block;
+}
+
+.goBackText {
+  font-family: 'Raleway';
+  font-size: 14px;
+  font-weight: 700;
+}

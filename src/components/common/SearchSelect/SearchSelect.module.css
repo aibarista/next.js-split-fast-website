@@ -1,0 +1,118 @@
+.inputTitle {
+  color: #313131;
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.inputLabel {
+  color: #313131;
+  font-size: 14px;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 11px;
+}
+
+.inputOptionWrapper {
+  position: relative;
+  margin-bottom: 9px;
+  height: 48px;
+}
+
+.inputOptionWrapper img {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 26px;
+  cursor: pointer;
+  width: 10px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.overlaidInput {
+  width: 100%;
+  border: 2px solid #efeff0;
+  height: 100%;
+  padding: 0 15px;
+  border-radius: 4px;
+  appearance: none;
+  min-width: 1px;
+  font-size: 14px;
+  position: relative;
+}
+
+.optionsWrapper {
+  position: absolute;
+  top: 48px;
+  border: 1px solid #e1edf3;
+  border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  box-shadow: #00000029 0 0 12px;
+  z-index: 1;
+}
+
+.option {
+  line-height: 170%;
+  cursor: pointer;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: flex;
+  background: #cf2c47;
+  border-radius: 4px;
+  position: relative;
+  padding: 10px 10px;
+  width: fit-content;
+  align-items: center;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.tagText {
+  font-size: 14px;
+  color: white;
+  margin-right: 10px;
+}
+
+.closeIcon {
+  width: 8px;
+  height: 8px;
+  right: 13px;
+  top: 50%;
+  cursor: pointer;
+}
+
+.closeIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.closeIcon path {
+  fill: white;
+}
+
+@media screen and (max-width: 992px) {
+  .inputTitle {
+    margin: 0 auto 21px;
+    width: fit-content;
+  }
+
+  .inputLabel {
+    margin: 0 auto 11px;
+    width: fit-content;
+  }
+
+  .tag {
+    margin: auto;
+  }
+}

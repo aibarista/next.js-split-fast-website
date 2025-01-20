@@ -1,0 +1,79 @@
+.dbpNotification {
+  position: relative;
+  padding: 0 0 31px;
+}
+
+.dbpNotificationWrapper {
+  max-width: 1271px;
+  margin: auto;
+  padding: 0 50px;
+  position: relative;
+}
+
+.dbpNotification .dbpNotifyHeader {
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.dbpNotification .dbpNotifyBody {
+  padding: 19px 19px 28px;
+  background-color: #f2f3f3;
+  position: relative;
+  border-radius: 5px;
+}
+
+.dbpNotification .dbpNotifyHello {
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.dbpNotification .dbpNotifySmall span {
+  font-weight: 700;
+}
+
+.dbpNotification .notifyView {
+  color: #cf2c47;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dbpNotification .publishCloseBtn {
+  position: absolute;
+  top: 2px;
+  right: 1px;
+  width: 41px;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.publishCloseBtn img {
+  display: block;
+}
+
+@media screen and (max-width: 992px) {
+  .dbpNotification {
+    padding: 0 0 26px;
+  }
+
+  .dbpNotificationWrapper {
+    padding: 0;
+  }
+
+  .dbpNotification .dbpNotifyBody {
+    padding: 15px 12px;
+  }
+
+  .dbpNotification .dbpNotifyHello {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .dbpNotification .dbpNotifySmall {
+    font-size: 14px;
+  }
+}

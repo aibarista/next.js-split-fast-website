@@ -1,0 +1,87 @@
+.hpBanner {
+  background-image: url('assets/images/homepage_banner_image.png');
+  position: relative;
+  padding: 135px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 63px;
+}
+
+.hpBannerOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.hpBannerOverlay img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.hpBsectionWrapper {
+  position: relative;
+  max-width: 1078px;
+  margin: auto;
+  padding: 0 50px;
+}
+
+.hpBheading {
+  max-width: 978px;
+  margin: auto;
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 60px;
+  color: white;
+  margin-bottom: 31px;
+  text-align: center;
+}
+
+.hpBheading span {
+  color: #cf2c47;
+}
+
+.hpBsubheading {
+  color: white;
+  font-family: 'Raleway';
+  font-size: 36px;
+  text-align: center;
+  line-height: 1.45;
+  margin-bottom: 63px;
+}
+
+.forFreeBtn {
+  background: #cf2c47;
+  font-family: 'Raleway';
+  color: white;
+  border-radius: 6px;
+  padding: 17.5px 46px;
+  width: fit-content;
+  margin: auto;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 992px) {
+  .hpBanner {
+    padding: 90px 0;
+  }
+
+  .hpBheading {
+    font-size: 30px;
+  }
+
+  .hpBsubheading {
+    font-size: 14px;
+  }
+
+  .forFreeBtn {
+    padding: 15px 25px;
+  }
+
+  .hpBsectionWrapper {
+    padding: 0 20px;
+  }
+}

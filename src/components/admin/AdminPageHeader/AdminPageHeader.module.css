@@ -1,0 +1,39 @@
+.pageHeadingWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.pageHeading {
+  font-size: 30px;
+  color: #24282a;
+  font-weight: 700;
+}
+
+.pageHeading span {
+  color: #aeb7bb;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 992px) {
+  .pageHeadingWrapper {
+    align-items: center;
+  }
+
+  .pageHeading {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .pageHeadingWrapper {
+    align-items: unset;
+    flex-direction: column;
+  }
+
+  .pageHeading {
+    padding-bottom: 5px;
+  }
+}

@@ -1,0 +1,166 @@
+.timePickerContainer {
+  position: relative;
+  width: 200px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.inputWrapper {
+  display: flex;
+  position: relative;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 16px;
+  cursor: pointer;
+  height: 48px;
+  background-color: #fff;
+}
+
+.input {
+  border: none;
+  outline: none;
+  flex: 1;
+  cursor: pointer;
+  font-size: 14px;
+  width: 50px;
+}
+
+.icon {
+  position: absolute;
+  height: 24px;
+  right: 10px;
+}
+
+.dropdown {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.dropdownColumns {
+  display: flex;
+}
+
+.dropdownColumn {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  border-right: 1px solid #eee;
+}
+
+.dropdownColumn:last-child {
+  border-right: none;
+}
+
+.dropdownItem {
+  padding: 4px 0;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+.options {
+  height: 100px;
+  overflow: auto;
+}
+
+.options::-webkit-scrollbar {
+  width: 2px;
+}
+
+.options::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.options::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.options::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/*.options {*/
+/*  scrollbar-width: thin;*/
+/*  scrollbar-color: #888 #f1f1f1;*/
+/*}*/
+
+.selected {
+  background-color: #e0e0ff;
+}
+
+.confirmButton {
+  margin: 8px;
+  padding: 6px 12px;
+  border: none;
+  background-color: #cf2c47;
+  color: white;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: calc(100% - 16px);
+}
+
+.confirmButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.timezonePickerContainer {
+  display: flex;
+  margin-top: 15px;
+  position: relative;
+}
+
+.timeZone {
+  font-size: 14px;
+  margin-right: 12px;
+  min-width: 150px;
+}
+
+.timezoneDropDown {
+  position: absolute;
+  left: 0;
+  width: fit-content;
+  height: 148px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 10px 0;
+  top: 20px;
+  overflow: auto;
+}
+
+.timezoneItem {
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.timezoneItem:hover {
+  background-color: #f0f0f0;
+}
+
+.changeButton {
+  color: #cf2c47;
+  font-size: 15px;
+  font-weight: bold;
+  text-wrap: nowrap;
+  cursor: pointer;
+}

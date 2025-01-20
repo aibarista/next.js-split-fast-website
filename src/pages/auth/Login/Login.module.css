@@ -1,0 +1,58 @@
+.loginContent {
+  margin-top: 71px;
+  max-width: 361px;
+}
+
+.lrmCheck {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #889398;
+  border-radius: 4px;
+  margin-right: 11px;
+}
+
+.lrmCheck img {
+  width: 90%;
+  height: 90%;
+  display: none;
+}
+
+.forgotPassword {
+  color: #cf2c47;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.lRememberMeWrapper {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.lrmForgotP {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.lrmText {
+  font-size: 16px;
+}
+
+.loginInputWrappers {
+  margin-bottom: 41px;
+}
+
+@media screen and (max-width: 992px) {
+  .loginContent {
+    max-width: unset;
+    margin-top: 50px;
+  }
+}

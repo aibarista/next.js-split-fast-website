@@ -1,0 +1,99 @@
+.contactsWrapper {
+  max-width: 1271px;
+  margin: 0 auto 40px;
+  padding: 0 50px;
+}
+
+.contactsWrapper label {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 11px;
+  color: #313131;
+}
+
+.contactsWrapper input {
+  display: block;
+  border: 2px solid #efeff0;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  appearance: none;
+  width: 100%;
+  min-width: 1px;
+  letter-spacing: 0.2px;
+  font-weight: 200;
+  font-size: 14px;
+  color: #313131;
+}
+
+.contactsWrapper input::placeholder {
+  color: #313131;
+}
+
+.contactsWrapper select {
+  width: 100%;
+  border: 2px solid #efeff0;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  appearance: none;
+  color: #313131;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.contactHeading {
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 23px;
+  color: #313131;
+}
+
+.contacts {
+  min-width: 600px;
+}
+
+.contact {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.contact:last-child {
+  margin-bottom: 0;
+}
+
+.contactName {
+  width: 100%;
+  min-width: 1px;
+}
+
+.contactRelation {
+  margin: 0 14px;
+  width: 100%;
+  min-width: 1px;
+}
+
+.input_wrapper {
+  position: relative;
+}
+
+.selectImage {
+  width: 10px;
+  height: 19px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25px;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 992px) {
+  .contactsWrapper {
+    padding: 0 20px;
+  }
+
+  .contactsOverflow {
+    overflow: auto;
+  }
+}

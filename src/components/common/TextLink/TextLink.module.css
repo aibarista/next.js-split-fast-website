@@ -1,0 +1,22 @@
+.textLinkWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 42px;
+}
+
+.textStyle {
+  font-family: 'Raleway';
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+a.linkStyle {
+  font-family: 'Raleway';
+  font-size: 16px;
+  display: block;
+  text-decoration: none;
+  color: #cf2c47;
+  font-weight: bold;
+  cursor: pointer;
+}

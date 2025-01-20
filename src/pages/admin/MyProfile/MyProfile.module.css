@@ -1,0 +1,84 @@
+.main {
+  position: relative;
+  background: #f9fbfc;
+  padding: 4px 0 0;
+}
+
+.mainWrapper {
+  max-width: 1271px;
+  margin: auto;
+  padding: 0 50px 39px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftPart {
+  width: 360px;
+}
+
+.sectionTitle {
+  color: #24282a;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.athleteNumber {
+  color: #313131;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.athleteNumber span {
+  color: #cf2c47;
+}
+
+.sectionSubtitle {
+  color: #313131;
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.sectionSubtitle.address {
+  margin-bottom: 25px;
+}
+
+.rightPart {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: -5px;
+  position: sticky;
+  top: 102px;
+  height: fit-content;
+}
+
+.buttonContainer {
+  margin-bottom: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 992px) {
+  .mainWrapper {
+    display: block;
+    padding: 0 20px;
+  }
+
+  .leftPart {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .rightPart {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}

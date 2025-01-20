@@ -1,0 +1,127 @@
+.sectionHolder {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  overflow: auto;
+  padding: 165px 50px 0;
+}
+
+.defaultBackground {
+  background-image: url('assets/images/login_desktop_background.png');
+}
+
+.ownerDetailBackground {
+  background-image: url('assets/images/owner_detail_desktop_background.png');
+}
+
+.sectionHolderWrapper {
+  max-width: 1270px;
+  padding: 28px 50px 165px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.logoImage {
+  display: block;
+  width: 225px;
+  height: 70px;
+  margin-bottom: 104px;
+  position: relative;
+  z-index: 1;
+}
+
+.ownerSetUpClubSectionHolder .logoImage {
+  display: none;
+}
+
+.mobileBack {
+  display: none;
+}
+
+.mobileCurve {
+  display: none;
+}
+
+.formContainer {
+  max-width: 361px;
+  margin-top: 49px;
+}
+
+.sectionHeading {
+  font-size: 70px;
+  font-weight: 700;
+  margin-bottom: 66px;
+  text-wrap: nowrap;
+  color: #313131;
+}
+
+.sectionHeading span {
+  color: #cf2c47;
+}
+
+@media screen and (max-width: 992px) {
+  .mobileBack {
+    display: block;
+    position: sticky;
+    padding-top: 55.2%;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .mobileBack img {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
+
+  .sectionHolder {
+    background: white;
+    padding: 0;
+  }
+
+  .sectionHolderWrapper {
+    background: white;
+    padding: 25px;
+  }
+
+  .sContent {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .logoImage {
+    margin-bottom: 40px;
+  }
+
+  .mobileCurve {
+    display: block;
+    position: absolute;
+    top: 2px;
+    transform: translateY(-100%);
+    right: 0;
+    width: 100%;
+  }
+
+  .mobileCurve img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .formContainer {
+    margin-top: 45px;
+    max-width: unset;
+  }
+
+  .sectionHeading {
+    font-size: 32px;
+    margin-bottom: 40px;
+    white-space: wrap;
+  }
+}
