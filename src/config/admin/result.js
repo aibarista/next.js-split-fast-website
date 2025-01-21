@@ -523,7 +523,7 @@ export const editFieldEventColumns = (results, eventType) => {
     for (let index = 0; index < results[0]?.highJumpAttempts.length; index++) {
       columns.push({
         accessor: `heightAttempts${index}`,
-        label: `Height ${index + 1}`,
+        label: `Height`,
         checkbox: false,
         sortable: false,
         editable: true,

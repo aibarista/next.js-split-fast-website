@@ -5,6 +5,7 @@ import styles from './AdminDataTable.module.css';
 import TableFilter from 'components/admin/TableFilter';
 import EditableInput from 'components/common/EditableInput';
 import DefaultHeaderCell from 'components/admin/DefaultHeaderCell';
+import HighJumpEditHeaderCell from 'components/admin/HighJumpEditHeaderCell';
 
 import { ReactComponent as SearchIcon } from 'assets/images/icon_search.svg';
 import { ReactComponent as FilterIcon } from 'assets/images/icon_filter.svg';
@@ -168,7 +169,22 @@ const AdminDataTable = ({
                         heightAttempts={data[0]?.heightAttempts}
                       />
                     );
-
+                  case `heightAttempts${index-2}`:
+                    return (
+                      <HighJumpEditHeaderCell
+                        key={index}
+                        value={data[0]?.heightAttempts[index-2]?.height}
+                        column={column}
+                        inputValueChange={(value) =>
+                          handleValueChange(
+                            data[0][primaryField],
+                            `heightAttempts${index-2}`,
+                            value,
+                            'height'
+                          )
+                        }
+                      />
+                    );
                   default:
                     return (
                       <DefaultHeaderCell
