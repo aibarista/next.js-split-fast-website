@@ -1,6 +1,7 @@
 .pageContainer {
   background: var(--ghost-white-color);
   padding-bottom: 20px;
+  min-height: calc(100vh - 171px);
 }
 
 .pageHolder {

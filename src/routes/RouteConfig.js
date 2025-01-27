@@ -19,6 +19,8 @@ import ResetPassword from 'pages/auth/ResetPassword';
 import ClubDashboard from 'pages/admin/ClubDashboard';
 import AthleteDashboard from 'pages/admin/AthleteDashboard';
 
+import ClubRecords from 'pages/admin/ClubRecords';
+
 import Competitions from 'pages/admin/Meets';
 import AddMeet from 'pages/admin/AddMeet';
 import ShowMeet from 'pages/admin/ShowMeet';
@@ -135,6 +137,14 @@ const RouteConfig = () => {
           element={
             <ProtectedRoute allowedRoles={['Owner', 'Admin', 'Official']}>
               <Athletes />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={routes.admin.clubRecord}
+          element={
+            <ProtectedRoute>
+              <ClubRecords />
             </ProtectedRoute>
           }
         />

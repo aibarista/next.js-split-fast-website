@@ -173,41 +173,44 @@ const Meets = () => {
           optionValues={optionValues}
           handleOptionChange={handleOptionChange}
         />
-        <h2 className="heading2" style={{ margin: '20px 0' }}>
-          Competitions
-        </h2>
-        {competitions.length ? (
-          <AdminDataTable
-            columns={columns}
-            data={competitions}
-            searchInputPlaceholder="Search Competitions"
-            headStyle={{
-              gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
-            }}
-            rowStyle={{
-              gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
-            }}
-          />
-        ) : (
-          <div style={{ textAlign: 'center' }}>Competition not found</div>
+        {competitions.length > 0 && (
+          <div>
+            <h2 className="heading2" style={{ margin: '20px 0' }}>
+              Competitions
+            </h2>        
+            <AdminDataTable
+              columns={columns}
+              data={competitions}
+              searchInputPlaceholder="Search Competitions"
+              headStyle={{
+                gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
+              }}
+              rowStyle={{
+                gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
+              }}
+            />
+          </div>
         )}
-        <h2 className="heading2" style={{ margin: '20px 0' }}>
-          Training Sessions
-        </h2>
-        {trainingSessions.length ? (
-          <AdminDataTable
-            columns={columns}
-            data={trainingSessions}
-            searchInputPlaceholder="Search Training Sessions"
-            headStyle={{
-              gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
-            }}
-            rowStyle={{
-              gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
-            }}
-          />
-        ) : (
-          <div style={{ textAlign: 'center' }}>Training Session not found</div>
+        {trainingSessions.length > 0 && (
+          <div>
+            <h2 className="heading2" style={{ margin: '20px 0' }}>
+              Training Sessions
+            </h2>
+            <AdminDataTable
+              columns={columns}
+              data={trainingSessions}
+              searchInputPlaceholder="Search Training Sessions"
+              headStyle={{
+                gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
+              }}
+              rowStyle={{
+                gridTemplateColumns: '3fr 3fr 4fr 4fr 3fr 2fr 4fr',
+              }}
+            />
+          </div>
+        )}
+        {(!trainingSessions.length && !competitions.length) && (
+          <div style={{ textAlign: 'center' }}>Meets not found</div>
         )}
       </AdminTablePageLayout>
     </>

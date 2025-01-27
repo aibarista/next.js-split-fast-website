@@ -3,6 +3,7 @@
   background: #f9fbfc;
   padding: 0;
   min-height: calc(100vh - 171px);
+  padding-bottom: 20px;
 }
 
 .pageWrapper {

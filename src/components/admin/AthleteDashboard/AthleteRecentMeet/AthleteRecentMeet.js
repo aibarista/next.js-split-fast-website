@@ -10,32 +10,28 @@ import AdminDataTable from 'components/admin/AdminDataTable';
 const AthleteRecentMeet = ({ recentMeet, clubId, openPopup }) => {
   return (
     <>
-      {recentMeet?.meets.length > 0 ? (
+      {recentMeet.meets[0].results.length > 0 && (
         <>
           <h2 className="heading2" style={{ margin: '20px 0' }}>
             {recentMeet.meets[0].meetName} (
             {convertDateTime(recentMeet.meets[0].meetDate).date})
           </h2>
-          {recentMeet.meets[0].results.length ? (
-            <AdminDataTable
-              borderType="full"
-              isAddedFeatures={false}
-              columns={recentMeetColumns}
-              data={recentMeetData(recentMeet, clubId, openPopup)}
-              searchInputPlaceholder=""
-              headStyle={{
-                gridTemplateColumns: 'repeat(6, 1fr)',
-                background: '#f1f1f2',
-              }}
-              rowStyle={{
-                gridTemplateColumns: 'repeat(6, 1fr)',
-              }}
-            />
-          ) : (
-            <>No result found</>
-          )}
+          <AdminDataTable
+            borderType="full"
+            isAddedFeatures={false}
+            columns={recentMeetColumns}
+            data={recentMeetData(recentMeet, clubId, openPopup)}
+            searchInputPlaceholder=""
+            headStyle={{
+              gridTemplateColumns: 'repeat(6, 1fr)',
+              background: '#f1f1f2',
+            }}
+            rowStyle={{
+              gridTemplateColumns: 'repeat(6, 1fr)',
+            }}
+          />
         </>
-      ) : null}
+      )}
     </>
   );
 };

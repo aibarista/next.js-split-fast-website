@@ -10,7 +10,7 @@ export const dataTypeOptions = [
   {
     value: 'draft',
     label: 'Draft',
-    allowedRoles: ['Owner', 'Administrator', 'Official'],
+    allowedRoles: ['Owner', 'Admin', 'Official'],
   },
 ];
 

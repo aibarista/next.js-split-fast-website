@@ -230,7 +230,8 @@ const AthleteDashboard = () => {
         {fetchingRecentMeet || fetchingPastMeets ? (
           <Loading />
         ) : (
-          <>
+          (pastMeets?.meets[0]?.results.length > 0 || recentMeet.meets[0].results.length > 0) ? 
+          (<>
             <AthleteRecentMeet
               recentMeet={recentMeet}
               clubId={selectedClub?.clubID}
@@ -241,7 +242,7 @@ const AthleteDashboard = () => {
               openPopup={openHistoryPopup}
               clubId={selectedClub?.clubID}
             />
-          </>
+          </>) : (<>No results found</>)
         )}
       </DashboardLayout>
       <ResultHistoryPopup

@@ -15,6 +15,11 @@ export const links = [
     icon: <HomeIcon />,
   },
   {
+    name: 'Club Records',
+    url: routes.admin.clubRecord,
+    icon: <HomeIcon />,
+  },
+  {
     name: 'My Dashboard',
     url: routes.admin.athleteDashboard,
     icon: <TeamIcon />,

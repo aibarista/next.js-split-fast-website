@@ -16,6 +16,9 @@
   padding: 0 16px;
   border-radius: 4px;
   appearance: none;
+  color: black;
+  background: white;
+  background-color: white
 }
 
 .inputWrapper,
@@ -24,8 +27,9 @@
 }
 
 .inputWrapper option {
-  color: #aeb7bb;
+  color: black;
   font-size: 14px;
+  background-color: white
 }
 
 img.selectImage {

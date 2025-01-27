@@ -23,6 +23,7 @@ const routes = {
         return `/clubs/${id}`;
       },
     },
+    clubRecord: '/club-records',
     athleteDashboard: '/athlete-dashboard',
     addUser: {
       path: '/clubs/:id/users/add',

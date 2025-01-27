@@ -2,21 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './Footer.module.css';
-import routes from 'routes';
+// import routes from 'routes';
 
+// TODO - add footer links after confirming urls
 const footerLinks = [
-  {
-    url: routes.client.home,
-    text: 'Link',
-  },
-  {
-    url: routes.client.home,
-    text: 'Link',
-  },
-  {
-    url: routes.client.home,
-    text: 'Link',
-  },
+  // {
+  //   url: routes.client.home,
+  //   text: 'Link',
+  // },
+  // {
+  //   url: routes.client.home,
+  //   text: 'Link',
+  // },
+  // {
+  //   url: routes.client.home,
+  //   text: 'Link',
+  // },
 ];
 
 const Footer = () => {
