@@ -18,26 +18,26 @@ const ClubRecords = () => {
     {
       clientID: '3uiofj;saj',
       meetID: '34223',
-      event: '100m',
+      eventType: '100m',
       ageGroup: 'U12',
       gender: "Boy",
       athlete: 'Lyndon Phipps',
       roundType: 'Heat',
       result: '10.9',
-      date: 'Jan 12, 2005 ',
+      timestamp: 'Jan 12, 2005 ',
       publishingStatus: "ClubMembers",
       buttons: ""
     },
     {
       clientID: '3uiofj;saj',
       meetID: '34223',
-      event: '100m',
+      eventType: '100m',
       ageGroup: 'U12',
       gender: "Boy",
       athlete: 'Sam Carson',
       roundType: 'Heat',
       result: '10.9',
-      date: 'Oct 11, 1999',
+      timestamp: 'Oct 11, 1999',
       publishingStatus: "AdminOnly",
       buttons: ""
     }
@@ -120,17 +120,19 @@ const ClubRecords = () => {
             />
           }
         </div>
-        <AdminDataTable
-          columns={columns}
-          data={records}
-          searchInputPlaceholder="Search Club Records"
-          headStyle={{
-            gridTemplateColumns: '2fr 3fr 2fr 2fr 2fr 3fr 4fr',
-          }}
-          rowStyle={{
-            gridTemplateColumns: '2fr 3fr 2fr 2fr 2fr 3fr 4fr',
-          }}
-        />
+        {records.length > 0 ? (
+          <AdminDataTable
+            columns={columns}
+            data={records}
+            searchInputPlaceholder="Search Athletes"
+            headStyle={{
+              gridTemplateColumns: '2fr 3fr 2fr 2fr 2fr 3fr 4fr',
+            }}
+            rowStyle={{
+              gridTemplateColumns: '2fr 3fr 2fr 2fr 2fr 3fr 4fr',
+            }}
+          />
+        ) : <div style={{ textAlign: 'center' }}>Club records not found</div>}
       </AdminTablePageLayout>
     </>
   );

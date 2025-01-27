@@ -1,6 +1,6 @@
 export const columns = [
     {
-      accessor: 'event',
+      accessor: 'eventType',
       label: 'Event',
       checkbox: true,
       headerStyle: {
@@ -64,7 +64,7 @@ export const columns = [
       },
     },
     {
-      accessor: 'date',
+      accessor: 'timestamp',
       label: 'Date',
       filterable: true,
       headerStyle: {
