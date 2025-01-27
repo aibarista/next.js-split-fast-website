@@ -1,0 +1,33 @@
+.adminPageOptionContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.adminPageOptionSubContainer {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.badge {
+    margin-top: 10px;
+    background-color: #cf2c47;
+    color: white;
+    border-radius: 12px;
+    font-size: 12px;
+    display: flex;
+    height: 20px;
+    min-width: 50px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 0px 3px;
+}
+
+.roundBadgeContainer {
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}

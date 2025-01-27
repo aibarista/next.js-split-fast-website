@@ -1,0 +1,9 @@
+.buttonStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
