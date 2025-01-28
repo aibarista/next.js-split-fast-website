@@ -51,7 +51,6 @@ const ClubRecords = () => {
   });
   const [showEditPopup, setShowEditPopup] = useState(false);
 
-
   const handleOptionChange = (name, value) => {
     setOptionValues({ ...optionValues, [name]: value });
   };

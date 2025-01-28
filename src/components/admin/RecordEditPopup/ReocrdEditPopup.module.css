@@ -39,12 +39,13 @@
   text-align: center;
   margin-top: 20px;
   padding: 0 20px;
+  color: #cf2c47;
 }
 
 .subtitle {
   margin-top: 5px;
-  margin-bottom: 50px;
-  font-size: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
   font-weight: 600;
   text-align: center;
 }
@@ -71,11 +72,12 @@
 
 .popupText {
   text-align: center;
-  max-width: 460px;
+  max-width: 600px;
   padding: 0 20px;
   margin: 0 auto 26px;
   line-height: 1.5;
   font-weight: 600;
+  margin-top: 70px;
 }
 
 .buttonWrapper {
@@ -153,6 +155,92 @@
 
 .noData {
   text-align: center;
+}
+
+.contentWapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.currentRecord, .newRecord {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+.recordHeaderDescription {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.currentRecordColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr 3fr 1fr;
+  width: 100%;
+  grid-gap: 10px 10px;
+  background-color: #dadada;
+  padding: 20px;
+}
+.recordTableWapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: #00000029 0 0 12px;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.recordTableHeader {
+  min-width: 1050px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 3fr 2fr;
+  width: 100%;
+  font-weight: bold;
+  color: #595959;
+}
+
+.headerItem, .bodyItem {
+  border-right: 2px solid #e2e2e2;
+  height: 100%;
+  width: 100%;
+  padding: 25px 20px;
+  border-bottom: 2px solid #e2e2e2;
+}
+
+.lastHeaderItem, .lastBodyItem {
+  border-right: none;
+}
+
+.recordTableBody {
+  min-width: 1050px;
+  color: #595959;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 3fr 2fr;
+  width: 100%;
+}
+
+.bottonButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.nonText {
+  margin-top: 140px;
+}
+
+.changeResult {
+  width: 100px;
 }
 
 @media screen and (max-width: 992px) {
