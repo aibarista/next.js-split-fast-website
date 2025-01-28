@@ -12,6 +12,7 @@ import { blackColor, redColor } from 'config/global';
 import OutlineButton from 'components/common/OutlineButton';
 import TextButton from 'components/common/TextButton';
 import RoundBadge from 'components/common/RoundBadge';
+import RecordEditPopup from 'components/admin/RecordEditPopup';
 
 const ClubRecords = () => {
   const tempData = [
@@ -48,6 +49,8 @@ const ClubRecords = () => {
   const [optionValues, setOptionValues] = useState({
     dataType: 'published',
   });
+  const [showEditPopup, setShowEditPopup] = useState(false);
+
 
   const handleOptionChange = (name, value) => {
     setOptionValues({ ...optionValues, [name]: value });
@@ -66,7 +69,7 @@ const ClubRecords = () => {
     if (optionValues.dataType === "published") {
       setRecords(tempData.filter((record) => {
         if (record.publishingStatus === "ClubMembers") {
-          record.result =(<div className={styles.roundBadgeContainer}><div>{record.result}</div><RoundBadge text='!'/></div>) ;
+          record.result = (<div className={styles.roundBadgeContainer}><div>{record.result}</div><RoundBadge text='!' /></div>);
         }
         record.buttons = <TextButton
           text='View Record'
@@ -80,11 +83,20 @@ const ClubRecords = () => {
           record.buttons = <TextButton
             text='Manage Record'
             textColor={redColor}
+            onClick={openEditPopup}
           ></TextButton>;
           return record;
         }
       }));
     }
+  }
+
+  const closeEditPopup = () => {
+    setShowEditPopup(false);
+  }
+
+  const openEditPopup = () => {
+    setShowEditPopup(true);
   }
 
   return (
@@ -134,6 +146,10 @@ const ClubRecords = () => {
           />
         ) : <div style={{ textAlign: 'center' }}>Club records not found</div>}
       </AdminTablePageLayout>
+      <RecordEditPopup
+        showPopup={showEditPopup}
+        closePopup={closeEditPopup}
+      />
     </>
   );
 };
