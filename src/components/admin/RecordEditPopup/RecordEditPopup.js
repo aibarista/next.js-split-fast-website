@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './ReocrdEditPopup.module.css';
-
 import BackIcon from 'assets/images/icon_arrow_right.svg';
 import CloseIcon from 'assets/images/icon_close.svg';
 import { ReactComponent as DeleteIcon } from 'assets/images/icon_delete.svg';
@@ -9,6 +9,7 @@ import CustomButton, {
 } from 'components/common/CustomButton';
 import IconTextButton from 'components/common/IconTextButton';
 import { redColor, whiteColor } from 'config/global';
+import ConfirmPopup from '../ConfirmPopup';
 
 const RecordEditPopup = ({
   showPopup,
@@ -16,6 +17,7 @@ const RecordEditPopup = ({
 }) => {
 
   const [popupState, setPopupState] = useState('publish');
+  const [confirmState, setConfirmState] = useState(false);
 
   const setPublish = () => {
     setPopupState("publish");
@@ -23,6 +25,15 @@ const RecordEditPopup = ({
   const setEdit = () => {
     setPopupState("edit");
   }
+
+  const openConfirmPopup = () => {
+    setConfirmState(true);
+  }
+
+  const closeConfirmPopup = () => {
+    setConfirmState(false);
+  }
+
   return (
     <div
       className={`${styles.recordEditPopupOverlay} ${showPopup ? styles.active : ''
@@ -134,6 +145,7 @@ const RecordEditPopup = ({
                   fontWeight: '600',
                 }}
                 bgColor="transparent"
+                onClick={openConfirmPopup}
               />
             </div> : <></>
           }
@@ -154,8 +166,17 @@ const RecordEditPopup = ({
           <img src={CloseIcon} alt="close" />
         </div>
       </div>
+      <ConfirmPopup
+        showPopup={confirmState}
+        closePopup={closeConfirmPopup}
+      />
     </div>
   );
+};
+
+RecordEditPopup.propTypes = {
+  showPopup: PropTypes.bool,
+  closePopup: PropTypes.bool,
 };
 
 export default RecordEditPopup;
