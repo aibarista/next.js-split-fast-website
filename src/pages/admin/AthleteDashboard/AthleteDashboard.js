@@ -40,6 +40,7 @@ import AthleteRecentMeet from 'components/admin/AthleteDashboard/AthleteRecentMe
 import AthletePastMeet from 'components/admin/AthleteDashboard/AthletePastMeet';
 
 import MedalBadge from 'assets/images/icon_medal_badge.png';
+import ChartToolTip from './ChartToolTip';
 
 const AthleteDashboard = () => {
   const clubRole = getClubRole();
@@ -229,9 +230,9 @@ const AthleteDashboard = () => {
         )}
         {fetchingRecentMeet || fetchingPastMeets ? (
           <Loading />
-        ) : (
-          (pastMeets?.meets[0]?.results.length > 0 || recentMeet.meets[0].results.length > 0) ? 
-          (<>
+        ) : pastMeets?.meets[0]?.results.length > 0 ||
+          recentMeet?.meets[0]?.results.length > 0 ? (
+          <>
             <AthleteRecentMeet
               recentMeet={recentMeet}
               clubId={selectedClub?.clubID}
@@ -242,7 +243,9 @@ const AthleteDashboard = () => {
               openPopup={openHistoryPopup}
               clubId={selectedClub?.clubID}
             />
-          </>) : (<>No results found</>)
+          </>
+        ) : (
+          <>No results found</>
         )}
       </DashboardLayout>
       <ResultHistoryPopup
@@ -280,7 +283,7 @@ const AthleteDashboard = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={<ChartToolTip />} />
             <Area
               type="monotone"
               dataKey="record"
@@ -288,7 +291,7 @@ const AthleteDashboard = () => {
               fill="#cf2c47"
               dot={true}
               activeDot={true}
-            />
+            ></Area>
           </AreaChart>
         </ResponsiveContainer>
         {historyResults.length > 0 ? (

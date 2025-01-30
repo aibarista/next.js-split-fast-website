@@ -16,7 +16,7 @@ const CustomDatePicker = ({ label, name, value, onChange, error }) => {
             min="1900-01-01"
             onChange={onChange}
             value={value}
-            className={(!!value) ? styles.dateHasValue : ''}
+            className={!!value ? styles.dateHasValue : ''}
           />
           <img
             src={calendarIcon}

@@ -152,16 +152,16 @@ const ResultEditPopup = ({
         } else if (tableData[0].eventType === 'High Jump') {
           const attempts = [];
           tableData.forEach((result) => {
-            for (let i=0; i<result?.heightAttempts.length; i++) {
+            for (let i = 0; i < result?.heightAttempts.length; i++) {
               attempts.push({
                 resultID: result[`heightAttempts${i}`].resultId,
                 height: result[`heightAttempts${i}`].height,
                 attempt1: result[`heightAttempts${i}`].attempt1,
                 attempt2: result[`heightAttempts${i}`].attempt2,
-                attempt3: result[`heightAttempts${i}`].attempt3
+                attempt3: result[`heightAttempts${i}`].attempt3,
               });
             }
-          })
+          });
           await editHighJumpResults({
             eventType,
             ageGroup,
@@ -172,7 +172,7 @@ const ResultEditPopup = ({
             attempts,
           });
 
-          return true
+          return true;
         } else {
           const requestBody = tableData.map((result) => ({
             resultID: result.resultID,
@@ -300,10 +300,7 @@ const ResultEditPopup = ({
                   isAddedFeatures={false}
                   columns={
                     results[0]?.unit === 'm' || eventType === 'High Jump'
-                      ? editFieldEventColumns(
-                          results,
-                          eventType
-                        )
+                      ? editFieldEventColumns(results, eventType)
                       : editTrackEventColumns
                   }
                   primaryField={editColumnPrimaryField}
@@ -313,10 +310,10 @@ const ResultEditPopup = ({
                   headStyle={{
                     gridTemplateColumns:
                       results[0]?.unit === 'm'
-                        ? `1fr 3fr ${'3fr '.repeat(results[0]?.attempts.length).trim()}`:
-                        (eventType === 'High Jump' ?
-                        `1fr 3fr ${'3fr '.repeat(results[0]?.highJumpAttempts.length).trim()}`
-                        : '1fr 4fr 2fr 2fr 3fr 3fr 3fr 1fr'),
+                        ? `1fr 3fr ${'3fr '.repeat(results[0]?.attempts.length).trim()}`
+                        : eventType === 'High Jump'
+                          ? `1fr 3fr ${'3fr '.repeat(results[0]?.highJumpAttempts.length).trim()}`
+                          : '1fr 4fr 2fr 2fr 3fr 3fr 3fr 1fr',
                     background: '#f1f1f2',
                   }}
                   rowStyle={{
@@ -324,8 +321,8 @@ const ResultEditPopup = ({
                       results[0]?.unit === 'm'
                         ? `1fr 3fr ${'3fr '.repeat(results[0]?.attempts.length).trim()}`
                         : eventType === 'High Jump'
-                        ? `1fr 3fr ${'3fr '.repeat(results[0]?.highJumpAttempts.length).trim()}`
-                        : '1fr 4fr 2fr 2fr 3fr 3fr 3fr 1fr',
+                          ? `1fr 3fr ${'3fr '.repeat(results[0]?.highJumpAttempts.length).trim()}`
+                          : '1fr 4fr 2fr 2fr 3fr 3fr 3fr 1fr',
                   }}
                 />
               ) : (

@@ -538,9 +538,9 @@ export const editFieldEventColumns = (results, eventType) => {
           paddingRight: 10,
         },
         options: options,
-      });  
+      });
     }
-    return columns
+    return columns;
   }
   for (let index = 0; index < results[0]?.attempts.length; index++) {
     columns.push({

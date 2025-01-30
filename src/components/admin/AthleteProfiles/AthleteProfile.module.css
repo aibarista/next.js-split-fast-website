@@ -1,48 +1,48 @@
 .container {
-    margin-bottom: 16px;
+  margin-bottom: 16px;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .title {
-    font-size: 14px;
-    font-weight: 500;
-    display: block;
-    color: #313131;
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  color: #313131;
 }
 
 .link {
-    font-size: 14px;
-    font-weight: bold;
-    color: #cf2c47;
-    text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #cf2c47;
+  text-decoration: none;
 }
 
 .athlete {
-    position: relative;
-    width: 100%;
-    border: 2px solid #efeff0;
-    height: 48px;
-    padding: 0 16px;
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+  position: relative;
+  width: 100%;
+  border: 2px solid #efeff0;
+  height: 48px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .athleteName {
-    color: #000;
-    font-size: 14px;
-    font-weight: 600;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .athlete .link {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 16px;
 }

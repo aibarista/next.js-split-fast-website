@@ -11,7 +11,6 @@ const TableFilter = ({
   closePopup,
   handleFilterChange,
 }) => {
-  console.log('filters: ', filters);
   const [selectedFilterValues, setSelectedFilterValues] = useState({});
 
   const getFilterValueNumber = () => {

@@ -177,7 +177,7 @@ const Meets = () => {
           <div>
             <h2 className="heading2" style={{ margin: '20px 0' }}>
               Competitions
-            </h2>        
+            </h2>
             <AdminDataTable
               columns={columns}
               data={competitions}
@@ -209,7 +209,7 @@ const Meets = () => {
             />
           </div>
         )}
-        {(!trainingSessions.length && !competitions.length) && (
+        {!trainingSessions.length && !competitions.length && (
           <div style={{ textAlign: 'center' }}>Meets not found</div>
         )}
       </AdminTablePageLayout>

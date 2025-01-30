@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'types/global';
 import routes from 'routes';
-import { convertDateTime } from 'utils/time';
+import { convertDateTime, convertRecordToMilliseconds } from 'utils/time';
 import MedalBadge from 'assets/images/icon_medal_badge.png';
 import { ReactComponent as EyeIcon } from 'assets/images/icon_eye.svg';
 import { ReactComponent as ChartIcon } from 'assets/images/icon_chart.svg';
@@ -245,7 +245,10 @@ export const createEventHistory = (results) => {
     .forEach((result) => {
       history.push({
         name: convertDateTime(result.resultTimestamp).date,
-        record: +result.resultValue.replace('m', ''),
+        record: result.resultValue.includes('m')
+          ? result.resultValue.replace('m', '')
+          : convertRecordToMilliseconds(result.resultValue) / 1000,
+        unit: result.resultValue.includes('m') ? 'm' : 's',
       });
     });
 

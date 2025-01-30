@@ -130,13 +130,13 @@ const Results = ({ isOpenEditPopup = false }) => {
         eventType,
         getAgeGroupsForClubRecords(ageGroup),
         gender
-      ).catch(e => {
+      ).catch((e) => {
         console.error(e); // "No club record found for the specified criteria."
         return null;
       });
       if (response) {
         console.log('club records: ', response.data);
-        setClubRecords(response.data);  
+        setClubRecords(response.data);
       }
     }
   }, [clubId, eventType, ageGroup, gender]);

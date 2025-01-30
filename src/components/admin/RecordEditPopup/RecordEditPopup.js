@@ -9,7 +9,6 @@ import CustomButton, {
 } from 'components/common/CustomButton';
 import IconTextButton from 'components/common/IconTextButton';
 import { redColor, whiteColor } from 'config/global';
-import ConfirmPopup from '../ConfirmPopup';
 
 const RecordEditPopup = ({
   showPopup,
@@ -17,7 +16,6 @@ const RecordEditPopup = ({
 }) => {
 
   const [popupState, setPopupState] = useState('publish');
-  const [confirmState, setConfirmState] = useState(false);
 
   const setPublish = () => {
     setPopupState("publish");
@@ -25,15 +23,6 @@ const RecordEditPopup = ({
   const setEdit = () => {
     setPopupState("edit");
   }
-
-  const openConfirmPopup = () => {
-    setConfirmState(true);
-  }
-
-  const closeConfirmPopup = () => {
-    setConfirmState(false);
-  }
-
   return (
     <div
       className={`${styles.recordEditPopupOverlay} ${showPopup ? styles.active : ''
@@ -145,7 +134,6 @@ const RecordEditPopup = ({
                   fontWeight: '600',
                 }}
                 bgColor="transparent"
-                onClick={openConfirmPopup}
               />
             </div> : <></>
           }
@@ -166,10 +154,6 @@ const RecordEditPopup = ({
           <img src={CloseIcon} alt="close" />
         </div>
       </div>
-      <ConfirmPopup
-        showPopup={confirmState}
-        closePopup={closeConfirmPopup}
-      />
     </div>
   );
 };

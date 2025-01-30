@@ -1,1 +1,1 @@
-export {default} from './AthleteTable';
+export { default } from './AthleteTable';

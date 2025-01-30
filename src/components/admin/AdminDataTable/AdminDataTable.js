@@ -73,7 +73,6 @@ const AdminDataTable = ({
   });
 
   const sortedData = [...filteredData].sort((a, b) => {
-    console.log('filteredData', filteredData)
     if (sortConfig.key) {
       const aValue = a[sortConfig.key];
       const bValue = b[sortConfig.key];
@@ -169,16 +168,16 @@ const AdminDataTable = ({
                         heightAttempts={data[0]?.heightAttempts}
                       />
                     );
-                  case `heightAttempts${index-2}`:
+                  case `heightAttempts${index - 2}`:
                     return (
                       <HighJumpEditHeaderCell
                         key={index}
-                        value={data[0]?.heightAttempts[index-2]?.height}
+                        value={data[0]?.heightAttempts[index - 2]?.height}
                         column={column}
                         inputValueChange={(value) =>
                           handleValueChange(
                             data[0][primaryField],
-                            `heightAttempts${index-2}`,
+                            `heightAttempts${index - 2}`,
                             value,
                             'height'
                           )
@@ -267,9 +266,7 @@ const AdminDataTable = ({
                                 <>
                                   <select
                                     className={styles.cellSelectHighJump}
-                                    value={
-                                      row[column.accessor]?.attempt1
-                                    }
+                                    value={row[column.accessor]?.attempt1}
                                     onChange={(e) => {
                                       handleValueChange(
                                         row[primaryField],
@@ -287,9 +284,7 @@ const AdminDataTable = ({
                                   </select>
                                   <select
                                     className={styles.cellSelectHighJump}
-                                    value={
-                                      row[column.accessor]?.attempt2
-                                    }
+                                    value={row[column.accessor]?.attempt2}
                                     onChange={(e) => {
                                       handleValueChange(
                                         row[primaryField],
@@ -307,9 +302,7 @@ const AdminDataTable = ({
                                   </select>
                                   <select
                                     className={styles.cellSelectHighJump}
-                                    value={
-                                      row[column.accessor]?.attempt3
-                                    }
+                                    value={row[column.accessor]?.attempt3}
                                     onChange={(e) => {
                                       handleValueChange(
                                         row[primaryField],

@@ -28,7 +28,7 @@
   color: black !important;
 }
 
-input[type="date"],
+input[type='date'],
 input[type='time'] {
   color: #aeb7bb;
   font-size: 14px;

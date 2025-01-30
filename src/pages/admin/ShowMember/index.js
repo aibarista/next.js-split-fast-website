@@ -1,1 +1,1 @@
-export {default} from './ShowMember';
+export { default } from './ShowMember';

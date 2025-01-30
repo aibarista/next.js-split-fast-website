@@ -5,17 +5,19 @@ import styles from './EditableInput.module.css';
 const EditableInput = ({ value, inputValueChange }) => {
   const [tempValue, setTempValue] = useState(value);
 
-  
   // Handle both direct input and spinner button changes
   const handleInputChange = (e) => {
     const newValue = e.target.value;
     setTempValue(newValue);
-    
+
     // For spinner buttons, we want to format and save immediately
-    if (e.nativeEvent.inputType === 'insertReplacementText' || 
-        e.nativeEvent.inputType === 'insertFromPaste' ||
-        e.nativeEvent.inputType === 'insertFromDropdown' ||
-        !e.nativeEvent.inputType) { // Spinner buttons don't set inputType
+    if (
+      e.nativeEvent.inputType === 'insertReplacementText' ||
+      e.nativeEvent.inputType === 'insertFromPaste' ||
+      e.nativeEvent.inputType === 'insertFromDropdown' ||
+      !e.nativeEvent.inputType
+    ) {
+      // Spinner buttons don't set inputType
       const formattedValue = parseFloat(newValue).toFixed(2);
       if (!isNaN(formattedValue)) {
         setTempValue(formattedValue);
@@ -23,7 +25,6 @@ const EditableInput = ({ value, inputValueChange }) => {
       }
     }
   };
-
 
   // Handle blur for direct keyboard input
   const handleInputBlur = () => {
@@ -37,7 +38,6 @@ const EditableInput = ({ value, inputValueChange }) => {
     }
   };
 
-  
   useEffect(() => {
     setTempValue(parseFloat(value).toFixed(2));
   }, [value]);

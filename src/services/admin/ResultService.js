@@ -130,9 +130,9 @@ export const resultsToHighJumpTableData = (results, eventType) => {
       )),
       eventType,
       resultID: result.athleteId,
-    }
-    for (let i=0; i<result?.heightAttempts.length; i++) {
-      res[`heightAttempts${i}`] = result?.heightAttempts[i]
+    };
+    for (let i = 0; i < result?.heightAttempts.length; i++) {
+      res[`heightAttempts${i}`] = result?.heightAttempts[i];
     }
     data.push(res);
   });

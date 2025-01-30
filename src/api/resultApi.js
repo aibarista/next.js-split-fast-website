@@ -210,7 +210,6 @@ export const editEventAttempts = async ({
   }
 };
 
-
 /**
  * FIELD EVENTS
  *
@@ -272,7 +271,6 @@ export const editHighJumpResults = async ({
     throw error;
   }
 };
-
 
 /**
  * Fetches events based on their publishing status.
