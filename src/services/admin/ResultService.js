@@ -49,7 +49,7 @@ export const resultsToTableData = (results, eventType) => {
           attempt5: result.attempts?.length > 4 ? result.attempts[4] : null,
           attempt6: result.attempts?.length > 5 ? result.attempts[5] : null,
           attempts: result?.attempts?.map((attempt, index) => (
-            <div style={{ paddingLeft: 22, paddingRight: 10 }} key={index}>
+            <div style={{ paddingLeft: 20, minWidth: 70 }} key={index}>
               {attempt.status === 'OK'
                 ? `${attempt.distance.toFixed(2)} m`
                 : attempt.status === 'Foul'
@@ -124,7 +124,7 @@ export const resultsToHighJumpTableData = (results, eventType) => {
       position: result.position || '',
       pr: result.isPR ? 'YES' : 'NO',
       highJumpAttempts: result?.heightAttempts?.map((attempt, index) => (
-        <div style={{ paddingLeft: 22, paddingRight: 10 }} key={index}>
+        <div style={{ paddingLeft: 20, minWidth: 70 }} key={index}>
           {`${attempt.attempt1} ${attempt.attempt2} ${attempt.attempt3}`}
         </div>
       )),

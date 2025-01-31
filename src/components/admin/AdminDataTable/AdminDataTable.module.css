@@ -6,7 +6,8 @@
 }
 
 .athletesTable {
-  min-width: 900px;
+  min-width: 100%;
+  display: inline-block;
 }
 
 .athletesTableHeader {

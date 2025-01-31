@@ -17,21 +17,32 @@ export const getAttemptOptionsForEvent = (eventType) => {
 };
 
 export const getResultAttemptCount = (results) => {
+  let count = 0;
   if (results[0]?.highJumpAttempts?.length) {
-    return results[0]?.highJumpAttempts.length;
+    for (let i = 0; i < results.length; i++) {
+      if (count < results[i]?.highJumpAttempts?.length) {
+        count = results[i]?.highJumpAttempts?.length;
+      }
+    }
+    return count;
   }
   if (results[0]?.attempts?.length) {
-    return results[0]?.attempts.length;
+    for (let i = 0; i < results.length; i++) {
+      if (count < results[i]?.attempts?.length) {
+        count = results[i]?.attempts?.length;
+      }
+    }
+    return count;
   }
   return 0;
 };
 
 export const resultColumns = (results) => {
   if (results[0]?.highJumpAttempts?.length) {
-    return highJumpColumns(results[0]?.highJumpAttempts?.length);
+    return highJumpColumns(getResultAttemptCount(results));
   }
   if (results[0]?.attempts?.length) {
-    return fieldEventColumns(results[0]?.attempts?.length);
+    return fieldEventColumns(getResultAttemptCount(results));
   }
   return trackEventColumns;
 };
@@ -267,13 +278,13 @@ export const highJumpColumns = (attemptNumber) => {
       headerStyle: {
         fontSize: 13,
         paddingLeft: 21,
-        minWidth: 154,
+        minWidth: 90,
         letterSpacing: -0.3,
       },
       style: {
         fontSize: 13,
         paddingLeft: 21,
-        minWidth: 154,
+        minWidth: 90,
       },
     },
     {
@@ -283,9 +294,11 @@ export const highJumpColumns = (attemptNumber) => {
         paddingLeft: 20,
         paddingRight: 25,
         justifyContent: 'space-between',
+        minWidth: 154,
       },
       style: {
         paddingLeft: 20,
+        minWidth: 154,
       },
     },
     {
@@ -295,9 +308,11 @@ export const highJumpColumns = (attemptNumber) => {
         paddingLeft: 20,
         paddingRight: 25,
         justifyContent: 'space-between',
+        minWidth: 88,
       },
       style: {
         paddingLeft: 20,
+        minWidth: 88,
       },
     },
     {
@@ -307,9 +322,11 @@ export const highJumpColumns = (attemptNumber) => {
         paddingLeft: 20,
         paddingRight: 25,
         justifyContent: 'space-between',
+        minWidth: 70,
       },
       style: {
         paddingLeft: 20,
+        minWidth: 70,
       },
     },
     {
@@ -320,11 +337,11 @@ export const highJumpColumns = (attemptNumber) => {
       headerStyle: {
         paddingLeft: 22,
         paddingRight: 5,
-        minWidth: 58,
+        minWidth: 80,
       },
       style: {
         paddingLeft: 22,
-        minWidth: 58,
+        minWidth: 80,
       },
     },
     {
@@ -335,11 +352,11 @@ export const highJumpColumns = (attemptNumber) => {
       headerStyle: {
         paddingLeft: 22,
         paddingRight: 5,
-        minWidth: 58,
+        minWidth: 90,
       },
       style: {
         paddingLeft: 22,
-        minWidth: 58,
+        minWidth: 90,
       },
     },
     {
@@ -350,9 +367,11 @@ export const highJumpColumns = (attemptNumber) => {
       headerStyle: {
         paddingLeft: 22,
         paddingRight: 10,
+        minWidth: 90,
       },
       style: {
         paddingLeft: 22,
+        minWidth: 90,
       },
     },
     {
@@ -361,12 +380,12 @@ export const highJumpColumns = (attemptNumber) => {
       checkbox: false,
       sortable: false,
       headerStyle: {
-        paddingLeft: 22,
-        paddingRight: 10,
+        paddingLeft: 20,
+        minWidth: 70,
       },
       style: {
         display: 'grid',
-        gridTemplateColumns: `repeat(${attemptNumber}, 1fr)`,
+        gridTemplateColumns: `repeat(${attemptNumber}, 2fr)`,
       },
     },
   ];
@@ -510,10 +529,12 @@ export const editFieldEventColumns = (results, eventType) => {
       headerStyle: {
         paddingLeft: 20,
         paddingRight: 25,
+        minWidth: 150,
         justifyContent: 'space-between',
       },
       style: {
         paddingLeft: 20,
+        minWidth: 150,
       },
     },
   ];
@@ -531,11 +552,12 @@ export const editFieldEventColumns = (results, eventType) => {
         headerStyle: {
           paddingLeft: 22,
           paddingRight: 5,
-          minWidth: 58,
+          minWidth: 180,
         },
         style: {
           paddingLeft: 22,
           paddingRight: 10,
+          minWidth: 180,
         },
         options: options,
       });
@@ -553,7 +575,6 @@ export const editFieldEventColumns = (results, eventType) => {
       headerStyle: {
         paddingLeft: 22,
         paddingRight: 5,
-        minWidth: 58,
       },
       style: {
         paddingLeft: 22,

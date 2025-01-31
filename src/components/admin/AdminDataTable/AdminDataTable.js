@@ -262,7 +262,7 @@ const AdminDataTable = ({
                                 </>
                               );
                             case 'highJumpAttempt':
-                              return (
+                              return row[`heightAttempts${i - 2}`] ? (
                                 <>
                                   <select
                                     className={styles.cellSelectHighJump}
@@ -319,6 +319,8 @@ const AdminDataTable = ({
                                     ))}
                                   </select>
                                 </>
+                              ) : (
+                                <></>
                               );
                             case 'text':
                               return (
