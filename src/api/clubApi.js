@@ -218,3 +218,7 @@ export const getPendingClubRecords = async (clubId) => {
   return await authApi.get(`/clubRecords/pending?clubId=${clubId}`);
 };
 
+export const getPendingClubRecordsCount = async (clubId) => {
+  return await authApi.get(`/ClubRecords/pending/count?clubId=${clubId}`);
+};
+

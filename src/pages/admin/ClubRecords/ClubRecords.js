@@ -13,7 +13,7 @@ import { blackColor, redColor } from 'config/global';
 import OutlineButton from 'components/common/OutlineButton';
 import TextButton from 'components/common/TextButton';
 import RecordEditPopup from 'components/admin/RecordEditPopup';
-import { getAllClubRecords, getPendingClubRecords } from 'api/clubApi';
+import { getAllClubRecords, getPendingClubRecords, getPendingClubRecordsCount } from 'api/clubApi';
 import { convertDateTime } from 'utils/time';
 
 const ClubRecords = () => {
@@ -24,6 +24,7 @@ const ClubRecords = () => {
   const [pendingRecords, setPendingRecords] = useState([]);
   const [fetchingPublishedRecords, setFetchingPublishedRecords] = useState(true);
   const [fetchingPendingRecords, setFetchingPendingRecords] = useState(true);
+  const [fetchingPendingRecordsCount, setFetchingPendingRecordsCount] = useState(true);
 
   const [pendingRecordCounts, setPendingRecordCounts] = useState(0);
   const [optionValues, setOptionValues] = useState({
@@ -37,7 +38,6 @@ const ClubRecords = () => {
 
   useEffect(() => {
     filterRecords();
-    // getPendingRecordsCount();
   }, [optionValues]);
 
   const fetchAllClubRecords = useCallback(async () => {
@@ -66,6 +66,18 @@ const ClubRecords = () => {
     }
   }, [selectedClub]);
 
+  const fetchPendingClubRecordsCount = useCallback(async () => {
+    try {
+      if (selectedClub) {
+        const response = await getPendingClubRecordsCount(selectedClub?.clubID);
+        if (response.data) {
+          setPendingRecordCounts(response.data.count)
+        }
+      }
+    } catch (err) {
+      console.log('[ClubRecords] Fetch Pending Records error: ', err);
+    }
+  }, [selectedClub]);
 
   useEffect(() => {
     fetchAllClubRecords().then(() => {
@@ -83,10 +95,11 @@ const ClubRecords = () => {
     });
   }, [fetchPendingClubRecords]);
 
-
-  // const getPendingRecordsCount = () => {
-  //   setPendingRecordCounts(tempData.filter(item => item.publishingStatus === "ClubMembers").length);
-  // }
+  useEffect(() => {
+    fetchPendingClubRecordsCount().then(() => {
+      setFetchingPendingRecordsCount(false)
+    });
+  }, [fetchPendingClubRecordsCount]);
 
   const filterRecords = () => {
     if (optionValues.dataType === 'published') {
@@ -135,7 +148,7 @@ const ClubRecords = () => {
       <MetaTags title="SplitFast | Competitions" />
       <AdminTablePageLayout
         loading={
-          fetchingPublishedRecords || fetchingPendingRecords
+          fetchingPublishedRecords || fetchingPendingRecords || fetchingPendingRecordsCount
         }
       >
         <AdminPageHeader showNumber={false} name="Club Record" />
@@ -149,7 +162,7 @@ const ClubRecords = () => {
                 optionValues={optionValues}
               />
             )}
-            <div className={styles.badge}>{pendingRecordCounts} new</div>
+            {pendingRecordCounts > 0 && <div className={styles.badge}>{pendingRecordCounts} new</div>}
           </div>
           {optionValues.dataType === 'published' ? (
             <></>
