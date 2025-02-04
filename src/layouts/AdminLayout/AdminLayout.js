@@ -12,7 +12,7 @@ import AdminMenu from 'components/navigation/AdminMenu';
 import Loading from 'components/common/Loading';
 
 import { getClubs } from 'api/clubApi';
-import { getToken, removeToken, setClubRole } from 'services/auth/tokenService';
+import { getToken, setClubRole } from 'services/auth/tokenService';
 import { decodeToken } from 'utils/auth';
 import { logout } from 'api/authApi';
 

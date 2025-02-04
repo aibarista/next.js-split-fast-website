@@ -1,8 +1,8 @@
 .buttonStyle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    padding: 1px 50px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 1px 50px;
+  cursor: pointer;
 }

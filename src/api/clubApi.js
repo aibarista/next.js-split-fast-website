@@ -209,3 +209,7 @@ export const getClubRecords = async (clubId, eventType, ageGroups, gender) => {
     gender,
   });
 };
+
+export const getAllClubRecords = async (clubId) => {
+  return await authApi.get(`/clubRecords/all?clubId=${clubId}`);
+};

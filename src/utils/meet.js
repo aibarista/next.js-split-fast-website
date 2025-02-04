@@ -14,6 +14,10 @@ import upcomingEventImage2 from 'assets/images/uifd.png';
 import TableViewButton from 'components/admin/TableViewButton';
 
 export const ageOptionValuesToLabel = (ageOptionValues) => {
+  if (!ageOptionValues) {
+    return;
+  }
+  console.log('ageOptionValues', ageOptionValues);
   const values = ageOptionValues.split(',');
 
   const labels = [];

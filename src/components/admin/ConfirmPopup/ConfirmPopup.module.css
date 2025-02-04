@@ -1,81 +1,81 @@
 .confirmPopupOverlay {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    background: #595959;
-    z-index: 2;
-    display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: #595959;
+  z-index: 2;
+  display: none;
 }
 
 .confirmPopupOverlay.active {
-    display: block;
+  display: block;
 }
 
 .confirmPopup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 90%;
-    max-width: 570px;
-    height: 350px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    background: #ffffff 0 0 no-repeat padding-box;
-    padding: 30px 45px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 90%;
+  max-width: 570px;
+  height: 350px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background: #ffffff 0 0 no-repeat padding-box;
+  padding: 30px 45px;
 }
 
 .confirmPopupContainer {
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-    position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .title {
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
-    padding: 0 20px;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 20px;
 }
 
 .subtitle {
-    margin-top: 35px;
-    margin-bottom: 40px;
-    font-size: 22px;
-    font-weight: 600;
-    text-align: center;
+  margin-top: 35px;
+  margin-bottom: 40px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 992px) {
-    .confirmPopup {
-        padding-top: 20px;
-        height: max-content;
-    }
+  .confirmPopup {
+    padding-top: 20px;
+    height: max-content;
+  }
 
-    .title {
-        margin-top: 40px;
-        font-size: 25px;
-    }
+  .title {
+    margin-top: 40px;
+    font-size: 25px;
+  }
 
-    .buttons {
-        display: block;
-        margin: auto;
-        width: fit-content;
-        max-width: 90%;
-    }
+  .buttons {
+    display: block;
+    margin: auto;
+    width: fit-content;
+    max-width: 90%;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .confirmPopup {
-        width: 100%;
-    }
+  .confirmPopup {
+    width: 100%;
+  }
 }

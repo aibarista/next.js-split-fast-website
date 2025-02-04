@@ -26,13 +26,7 @@ const TextButton = ({
       style={buttonPropsStyle}
       onClick={onClick}
     >
-      <div
-        style={
-          { ...textStyle }
-        }
-      >
-        {text}
-      </div>
+      <div style={{ ...textStyle }}>{text}</div>
     </div>
   );
 };
