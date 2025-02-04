@@ -1,3 +1,4 @@
+import { getResultHighJumpHeights } from 'config/admin/result';
 import React from 'react';
 import { convertDateTime } from 'utils/time';
 
@@ -114,8 +115,24 @@ export const getAgeGroupsForClubRecords = (ageGroup) => {
 };
 
 export const resultsToHighJumpTableData = (results, eventType) => {
+  const heightsArray = getResultHighJumpHeights(results);
   const data = [];
   results.forEach((result) => {
+    let highJumpAttempts = [];
+    for (let i = 0; i < heightsArray.length; i++) {
+      const attempt = result?.heightAttempts.find(
+        (ha) => ha.height === heightsArray[i]
+      );
+      if (attempt) {
+        highJumpAttempts.push(
+          <div style={{ paddingLeft: 20, minWidth: 70 }} key={i}>
+            {`${attempt.attempt1} ${attempt.attempt2} ${attempt.attempt3}`}
+          </div>
+        );
+      } else {
+        highJumpAttempts.push(<div></div>);
+      }
+    }
     let res = {
       ...result,
       result: `${result.bestClearedHeight} m`,
@@ -123,19 +140,21 @@ export const resultsToHighJumpTableData = (results, eventType) => {
       athleteName: `${result.firstName} ${result.lastName}`,
       position: result.position || '',
       pr: result.isPR ? 'YES' : 'NO',
-      highJumpAttempts: result?.heightAttempts?.map((attempt, index) => (
-        <div style={{ paddingLeft: 20, minWidth: 70 }} key={index}>
-          {`${attempt.attempt1} ${attempt.attempt2} ${attempt.attempt3}`}
-        </div>
-      )),
+      highJumpAttempts,
       eventType,
       resultID: result.athleteId,
     };
-    for (let i = 0; i < result?.heightAttempts.length; i++) {
-      res[`heightAttempts${i}`] = result?.heightAttempts[i];
+    for (let i = 0; i < heightsArray.length; i++) {
+      const attempt = result?.heightAttempts.find(
+        (ha) => ha.height === heightsArray[i]
+      );
+      if (attempt) {
+        res[`heightAttempts${i}`] = attempt;
+      } else {
+        res[`heightAttempts${i}`] = { height: heightsArray[i], empty: true };
+      }
     }
     data.push(res);
   });
-
   return data;
 };

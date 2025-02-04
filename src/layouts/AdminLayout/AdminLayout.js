@@ -12,8 +12,9 @@ import AdminMenu from 'components/navigation/AdminMenu';
 import Loading from 'components/common/Loading';
 
 import { getClubs } from 'api/clubApi';
-import { getToken, setClubRole } from 'services/auth/tokenService';
+import { getToken, removeToken, setClubRole } from 'services/auth/tokenService';
 import { decodeToken } from 'utils/auth';
+import { logout } from 'api/authApi';
 
 const AdminLayout = () => {
   const navigate = useNavigate();
@@ -34,7 +35,6 @@ const AdminLayout = () => {
         navigate(routes.auth.login);
       }
       const response = await getClubs();
-
       const clubs = response.data;
       if (clubs.length > 0) {
         dispatch(updateClubs(clubs));
@@ -51,6 +51,11 @@ const AdminLayout = () => {
       }
     } catch (err) {
       console.log('[AdminLayout] Fetch Club error: ', err);
+      if (err.status === 401) {
+        console.log('token expired');
+        logout();
+        navigate(routes.auth.login);
+      }
     }
   }, [navigate, dispatch]);
 

@@ -11,6 +11,7 @@ import { ReactComponent as SearchIcon } from 'assets/images/icon_search.svg';
 import { ReactComponent as FilterIcon } from 'assets/images/icon_filter.svg';
 import DiscusHeaderCell from '../DiscusHeaderCell';
 import HighJumpHeaderCell from '../HighJumpHeaderCell';
+import { getResultHighJumpHeights } from 'config/admin/result';
 
 const AdminDataTable = ({
   data = [],
@@ -30,6 +31,7 @@ const AdminDataTable = ({
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
   const [filters, setFilters] = useState({});
   const [showFilterPopup, setShowFilterPopup] = useState(false);
+  const [highJumpHeights, setHighJumpHeights] = useState([]);
 
   useEffect(() => {
     const generatedFilters = {};
@@ -49,6 +51,9 @@ const AdminDataTable = ({
       }
     });
     setFilters(generatedFilters);
+    if (data[0].eventType === 'High Jump') {
+      setHighJumpHeights(getResultHighJumpHeights(data));
+    }
   }, [data, columns]);
 
   const filteredData = data.filter((row) => {
@@ -165,21 +170,22 @@ const AdminDataTable = ({
                       <HighJumpHeaderCell
                         key={index}
                         column={column}
-                        heightAttempts={data[0]?.heightAttempts}
+                        heightAttempts={highJumpHeights}
                       />
                     );
                   case `heightAttempts${index - 2}`:
                     return (
                       <HighJumpEditHeaderCell
                         key={index}
-                        value={data[0]?.heightAttempts[index - 2]?.height}
+                        value={data[0]?.[`heightAttempts${index - 2}`]?.height}
                         column={column}
                         inputValueChange={(value) =>
                           handleValueChange(
                             data[0][primaryField],
                             `heightAttempts${index - 2}`,
                             value,
-                            'height'
+                            'height',
+                            true
                           )
                         }
                       />
@@ -262,7 +268,7 @@ const AdminDataTable = ({
                                 </>
                               );
                             case 'highJumpAttempt':
-                              return row[`heightAttempts${i - 2}`] ? (
+                              return row[`heightAttempts${i - 2}`].resultId ? (
                                 <>
                                   <select
                                     className={styles.cellSelectHighJump}

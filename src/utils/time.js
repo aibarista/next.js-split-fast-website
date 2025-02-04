@@ -84,11 +84,9 @@ export const convertMillisecondsToRecord = (
   const millis = milliseconds % 1000;
 
   // Format milliseconds with leading zeros
-  console.log('millis: ', millis);
   const formattedMillis = Math.floor(millis / 10 ** (3 - millisecondZeroCount))
     .toString()
     .padStart(millisecondZeroCount, '0');
-  console.log('formattedMillis: ', formattedMillis);
 
   // Return the formatted string
   if (minutes > 0) {

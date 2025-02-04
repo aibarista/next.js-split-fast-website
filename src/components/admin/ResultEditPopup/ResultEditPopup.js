@@ -72,10 +72,16 @@ const ResultEditPopup = ({
     convertResultsToTableData(results);
   }, [results]);
 
-  const handleValueChange = (rowId, columnKey, newValue, type) => {
+  const handleValueChange = (
+    rowId,
+    columnKey,
+    newValue,
+    type,
+    isHeightChange
+  ) => {
     setTableData((prevData) =>
       prevData.map((row) =>
-        row[editColumnPrimaryField] === rowId
+        isHeightChange || row[editColumnPrimaryField] === rowId
           ? {
               ...row,
               [columnKey]: !type
@@ -88,7 +94,6 @@ const ResultEditPopup = ({
   };
 
   const saveResults = async () => {
-    console.log('tableData', tableData);
     try {
       if (tableData?.length > 0) {
         if (tableData[0].unit === 'm') {
@@ -152,14 +157,16 @@ const ResultEditPopup = ({
         } else if (tableData[0].eventType === 'High Jump') {
           const attempts = [];
           tableData.forEach((result) => {
-            for (let i = 0; i < result?.heightAttempts.length; i++) {
-              attempts.push({
-                resultID: result[`heightAttempts${i}`].resultId,
-                height: result[`heightAttempts${i}`].height,
-                attempt1: result[`heightAttempts${i}`].attempt1,
-                attempt2: result[`heightAttempts${i}`].attempt2,
-                attempt3: result[`heightAttempts${i}`].attempt3,
-              });
+            for (let i = 0; i < result?.highJumpAttempts.length; i++) {
+              if (result[`heightAttempts${i}`].resultId) {
+                attempts.push({
+                  resultID: result[`heightAttempts${i}`].resultId,
+                  height: result[`heightAttempts${i}`].height,
+                  attempt1: result[`heightAttempts${i}`].attempt1,
+                  attempt2: result[`heightAttempts${i}`].attempt2,
+                  attempt3: result[`heightAttempts${i}`].attempt3,
+                });
+              }
             }
           });
           await editHighJumpResults({
@@ -171,7 +178,6 @@ const ResultEditPopup = ({
             meetID,
             attempts,
           });
-
           return true;
         } else {
           const requestBody = tableData.map((result) => ({

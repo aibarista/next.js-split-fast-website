@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import styles from './Results.module.css';
 import routes from 'routes';
 import {
   getSelectedEvents,
@@ -11,14 +9,14 @@ import {
   getEventsByStatus,
   getHighJumpResults,
 } from 'api/resultApi';
-import { getClubRecords, getMeetById } from 'api/clubApi';
+import { getMeetById, getClubRecords } from 'api/clubApi';
 import { convertDateTime, convertMillisecondsToRecord } from 'utils/time';
 import { getClubRole } from 'services/auth/tokenService';
 import {
-  getAgeGroupsForClubRecords,
   resultsToTableData,
+  getAgeGroupsForClubRecords,
 } from 'services/admin/ResultService';
-
+import styles from './Results.module.css';
 import MetaTags from 'components/common/MetaTags';
 import AdminPageHeader from 'components/admin/AdminPageHeader';
 import AdminTablePageLayout from 'components/admin/AdminTablePageLayout';
@@ -42,13 +40,13 @@ const Results = ({ isOpenEditPopup = false }) => {
   const [fetchingMeet, setFetchingMeet] = useState(true);
   const [fetchingEvents, setFetchingEvents] = useState(true);
   const [fetchingClubRecords, setFetchingClubRecords] = useState(true);
+  const [clubRecords, setClubRecords] = useState([]);
 
   const [meet, setMeet] = useState(null);
   const [events, setEvents] = useState([]);
   const [, setEvent] = useState(null);
   const [results, setResults] = useState([]);
   const [resultType, setResultType] = useState('');
-  const [clubRecords, setClubRecords] = useState([]);
 
   const fetchResults = useCallback(async () => {
     try {
@@ -75,8 +73,6 @@ const Results = ({ isOpenEditPopup = false }) => {
           roundType
         );
       }
-
-      console.log('results: ', response.data);
       setResults(resultsToTableData(response.data, eventType));
     } catch (err) {
       console.error('[Results] Fetching results Error: ', err);
@@ -200,6 +196,12 @@ const Results = ({ isOpenEditPopup = false }) => {
   }, [fetchEvents]);
 
   useEffect(() => {
+    fetchClubRecords().then(() => {
+      setFetchingClubRecords(false);
+    });
+  }, [fetchClubRecords]);
+
+  useEffect(() => {
     if (events) {
       const event = events.find(
         (event) =>
@@ -216,12 +218,6 @@ const Results = ({ isOpenEditPopup = false }) => {
       }
     }
   }, [events, eventType, ageGroup, gender, roundType]);
-
-  useEffect(() => {
-    fetchClubRecords().then(() => {
-      setFetchingClubRecords(false);
-    });
-  }, [fetchClubRecords]);
 
   return (
     <>

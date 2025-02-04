@@ -18,7 +18,7 @@ export const ChartToolTip = ({ active, payload }) => {
         }}
       >
         <p>{`Date: ${payload[0].payload.name}`}</p>
-        <p>{`Value: ${value}`}</p>
+        <p>{`Result: ${value}`}</p>
       </div>
     );
   }

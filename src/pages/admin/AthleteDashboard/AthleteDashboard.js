@@ -301,9 +301,6 @@ const AthleteDashboard = () => {
             columns={historyResultDataColumns}
             data={historyResultData(historyResults)}
             searchInputPlaceholder=""
-            tableStyle={{
-              minWidth: 'unset',
-            }}
             headStyle={{
               gridTemplateColumns: 'repeat(4, 1fr)',
               background: '#f1f1f2',

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AdminDataTable from 'components/admin/AdminDataTable';
-import { getResultAttemptCount, resultColumns } from 'config/admin/result';
+import { getResultHighJumpHeights, resultColumns } from 'config/admin/result';
 
 const ResultDataTable = ({ results, eventType }) => {
   return results.length ? (
@@ -14,14 +14,14 @@ const ResultDataTable = ({ results, eventType }) => {
       headStyle={{
         gridTemplateColumns:
           results[0]?.unit === 'm' || eventType === 'High Jump'
-            ? `1fr 4fr 2fr 2fr 2fr 2fr 2fr ${2 * getResultAttemptCount(results)}fr`
+            ? `1fr 4fr 2fr 2fr 2fr 2fr 2fr ${2 * getResultHighJumpHeights(results).length}fr`
             : '2fr 4fr 3fr 3fr 3fr 3fr 3fr 4fr',
         background: '#f1f1f2',
       }}
       rowStyle={{
         gridTemplateColumns:
           results[0]?.unit === 'm' || eventType === 'High Jump'
-            ? `1fr 4fr 2fr 2fr 2fr 2fr 2fr ${2 * getResultAttemptCount(results)}fr`
+            ? `1fr 4fr 2fr 2fr 2fr 2fr 2fr ${2 * getResultHighJumpHeights(results).length}fr`
             : '2fr 4fr 3fr 3fr 3fr 3fr 3fr 4fr',
       }}
     />

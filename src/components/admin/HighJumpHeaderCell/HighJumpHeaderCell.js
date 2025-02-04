@@ -16,7 +16,7 @@ const HighJumpHeaderCell = ({ column, heightAttempts }) => {
           style={column.headerStyle}
           className={styles.headerCell}
         >
-          {heightAttempt.height} m
+          {heightAttempt} m
         </div>
       ))}
     </div>

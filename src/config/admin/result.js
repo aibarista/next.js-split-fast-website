@@ -18,14 +18,6 @@ export const getAttemptOptionsForEvent = (eventType) => {
 
 export const getResultAttemptCount = (results) => {
   let count = 0;
-  if (results[0]?.highJumpAttempts?.length) {
-    for (let i = 0; i < results.length; i++) {
-      if (count < results[i]?.highJumpAttempts?.length) {
-        count = results[i]?.highJumpAttempts?.length;
-      }
-    }
-    return count;
-  }
   if (results[0]?.attempts?.length) {
     for (let i = 0; i < results.length; i++) {
       if (count < results[i]?.attempts?.length) {
@@ -37,9 +29,19 @@ export const getResultAttemptCount = (results) => {
   return 0;
 };
 
+export const getResultHighJumpHeights = (results) => {
+  let heighArrays = new Set();
+  for (let i = 0; i < results.length; i++) {
+    for (let j = 0; j < results[i]?.heightAttempts?.length; j++) {
+      heighArrays.add(results[i]?.heightAttempts[j]?.height);
+    }
+  }
+  return [...heighArrays].sort((a, b) => a - b);
+};
+
 export const resultColumns = (results) => {
   if (results[0]?.highJumpAttempts?.length) {
-    return highJumpColumns(getResultAttemptCount(results));
+    return highJumpColumns(getResultHighJumpHeights(results).length);
   }
   if (results[0]?.attempts?.length) {
     return fieldEventColumns(getResultAttemptCount(results));
@@ -538,10 +540,10 @@ export const editFieldEventColumns = (results, eventType) => {
       },
     },
   ];
-
+  const heighArrays = getResultHighJumpHeights(results);
   const options = getAttemptOptionsForEvent(eventType);
   if (eventType === 'High Jump') {
-    for (let index = 0; index < results[0]?.highJumpAttempts.length; index++) {
+    for (let index = 0; index < heighArrays.length; index++) {
       columns.push({
         accessor: `heightAttempts${index}`,
         label: `Height`,
