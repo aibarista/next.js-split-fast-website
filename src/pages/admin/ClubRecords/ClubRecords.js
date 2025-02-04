@@ -13,13 +13,18 @@ import { blackColor, redColor } from 'config/global';
 import OutlineButton from 'components/common/OutlineButton';
 import TextButton from 'components/common/TextButton';
 import RecordEditPopup from 'components/admin/RecordEditPopup';
-import { getAllClubRecords } from 'api/clubApi';
+import { getAllClubRecords, getPendingClubRecords } from 'api/clubApi';
 import { convertDateTime } from 'utils/time';
 
 const ClubRecords = () => {
   const { selectedClub } = useSelector((state) => state.user || {});
   const clubRole = getClubRole();
   const [records, setRecords] = useState([]);
+  const [publishedRecords, setPublishedRecords] = useState([]);
+  const [pendingRecords, setPendingRecords] = useState([]);
+  const [fetchingPublishedRecords, setFetchingPublishedRecords] = useState(true);
+  const [fetchingPendingRecords, setFetchingPendingRecords] = useState(true);
+
   const [pendingRecordCounts, setPendingRecordCounts] = useState(0);
   const [optionValues, setOptionValues] = useState({
     dataType: 'published',
@@ -39,31 +44,45 @@ const ClubRecords = () => {
     try {
       if (selectedClub) {
         const response = await getAllClubRecords(selectedClub?.clubID);
-        setRecords(
-          response.data.map((record) => {
-            record.buttons = (
-              <TextButton
-                text="Manage Record"
-                textColor={redColor}
-                onClick={openEditPopup}
-              ></TextButton>
-            );
-            record.timestamp = convertDateTime(record.lastModified).date;
-            record.result = (record.recordValue / 1000).toFixed(2);
-            return record;
-          })
-        );
+        if (response.data) {
+          setPublishedRecords(response.data)
+        }
       }
     } catch (err) {
-      console.log('[Meets] Fetch Upcoming Meets error: ', err);
+      console.log('[ClubRecords] Fetch Published Records error: ', err);
     }
   }, [selectedClub]);
 
+  const fetchPendingClubRecords = useCallback(async () => {
+    try {
+      if (selectedClub) {
+        const response = await getPendingClubRecords(selectedClub?.clubID);
+        if (response.data) {
+          setPendingRecords(response.data)
+        }
+      }
+    } catch (err) {
+      console.log('[ClubRecords] Fetch Pending Records error: ', err);
+    }
+  }, [selectedClub]);
+
+
   useEffect(() => {
     fetchAllClubRecords().then(() => {
-      console.log('fetched');
+      setFetchingPublishedRecords(false);
+      setOptionValues({
+        dataType: 'published',
+      })
     });
   }, [fetchAllClubRecords]);
+
+
+  useEffect(() => {
+    fetchPendingClubRecords().then(() => {
+      setFetchingPendingRecords(false)
+    });
+  }, [fetchPendingClubRecords]);
+
 
   // const getPendingRecordsCount = () => {
   //   setPendingRecordCounts(tempData.filter(item => item.publishingStatus === "ClubMembers").length);
@@ -71,27 +90,35 @@ const ClubRecords = () => {
 
   const filterRecords = () => {
     if (optionValues.dataType === 'published') {
-      // setRecords(tempData.filter((record) => {
-      //   if (record.publishingStatus === "ClubMembers") {
-      //     record.result = (<div className={styles.roundBadgeContainer}><div>{record.result}</div><RoundBadge text='!' /></div>);
-      //   }
-      //   record.buttons = <TextButton
-      //     text='View Record'
-      //     textColor={redColor}
-      //   ></TextButton>;
-      //   return record;
-      // }));
+      setRecords(
+        publishedRecords.map((record) => {
+          record.buttons = (
+            <TextButton
+              text="View Record"
+              textColor={redColor}
+              // onClick={openEditPopup}
+            ></TextButton>
+          );
+          record.timestamp = convertDateTime(record.lastModified).date;
+          record.result = (record.recordValue / 1000).toFixed(2);
+          return record;
+        })
+      );
     } else {
-      // setRecords(tempData.filter((record) => {
-      // if (record.publishingStatus === "ClubMembers") {
-      //   record.buttons = <TextButton
-      //     text='Manage Record'
-      //     textColor={redColor}
-      //     onClick={openEditPopup}
-      //   ></TextButton>;
-      //   return record;
-      // }
-      // }));
+      setRecords(
+        pendingRecords.map((record) => {
+          record.buttons = (
+            <TextButton
+              text="Manage Record"
+              textColor={redColor}
+              onClick={openEditPopup}
+            ></TextButton>
+          );
+          record.timestamp = convertDateTime(record.lastModified).date;
+          record.result = (record.recordValue / 1000).toFixed(2);
+          return record;
+        })
+      );
     }
   };
 
@@ -106,7 +133,11 @@ const ClubRecords = () => {
   return (
     <>
       <MetaTags title="SplitFast | Competitions" />
-      <AdminTablePageLayout>
+      <AdminTablePageLayout
+        loading={
+          fetchingPublishedRecords || fetchingPendingRecords
+        }
+      >
         <AdminPageHeader showNumber={false} name="Club Record" />
         <div className={styles.adminPageOptionContainer}>
           <div className={styles.adminPageOptionSubContainer}>

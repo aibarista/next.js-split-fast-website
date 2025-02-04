@@ -213,3 +213,8 @@ export const getClubRecords = async (clubId, eventType, ageGroups, gender) => {
 export const getAllClubRecords = async (clubId) => {
   return await authApi.get(`/clubRecords/all?clubId=${clubId}`);
 };
+
+export const getPendingClubRecords = async (clubId) => {
+  return await authApi.get(`/clubRecords/pending?clubId=${clubId}`);
+};
+
