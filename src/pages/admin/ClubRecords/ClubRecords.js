@@ -13,8 +13,9 @@ import { blackColor, redColor } from 'config/global';
 import OutlineButton from 'components/common/OutlineButton';
 import TextButton from 'components/common/TextButton';
 import RecordEditPopup from 'components/admin/RecordEditPopup';
-import { getAllClubRecords, getPendingClubRecords, getPendingClubRecordsCount } from 'api/clubApi';
+import { getAllClubRecords, getPendingClubRecords, getPendingClubRecordsCount, updateStatusOfPendingClubRecordResult } from 'api/clubApi';
 import { convertDateTime } from 'utils/time';
+import { toast } from 'react-toastify';
 
 const ClubRecords = () => {
   const { selectedClub } = useSelector((state) => state.user || {});
@@ -26,6 +27,7 @@ const ClubRecords = () => {
   const [fetchingPendingRecords, setFetchingPendingRecords] = useState(true);
   const [fetchingPendingRecordsCount, setFetchingPendingRecordsCount] = useState(true);
 
+  const [selectedClubRecordResult, setSelectedClubRecordResult] = useState({});
   const [pendingRecordCounts, setPendingRecordCounts] = useState(0);
   const [optionValues, setOptionValues] = useState({
     dataType: 'published',
@@ -79,6 +81,37 @@ const ClubRecords = () => {
     }
   }, [selectedClub]);
 
+  const changeStatusOfPendingClubRecordResult = async (status) => {
+    setShowEditPopup(false);
+    try {
+      if (selectedClub) {
+        await updateStatusOfPendingClubRecordResult(
+          selectedClub.clubID,
+          selectedClubRecordResult.resultId,
+          status
+        );
+        setRecords(records.filter(record => record.result != selectedClubRecordResult.currentRecordValue));
+        setPendingRecords(pendingRecords.filter(record => record.resultId !== selectedClubRecordResult.resultId));
+        if (status === "Approved") {
+          setPublishedRecords(...publishedRecords, {
+              athleteName: `${selectedClubRecordResult.athleteFirstName} ${selectedClubRecordResult.athleteLastName}`,
+              recordValue: selectedClubRecordResult.currentRecordValue,
+              ageGroup: selectedClubRecordResult.ageGroup,
+              eventType: selectedClubRecordResult.eventType,
+              gender: selectedClubRecordResult.gender,
+              lastModified: selectedClubRecordResult.timestamp
+          });
+          toast.success(`${selectedClubRecordResult.result} published successfully.`);
+        }
+        else {
+          toast.success(`${selectedClubRecordResult.result} discarded successfully.`);
+        }
+        setSelectedClubRecordResult({});
+      }
+    } catch (err) {
+      console.log('[ClubRecords] Update Status of Pending Club Records Result error: ', err);
+    }
+  }
   useEffect(() => {
     fetchAllClubRecords().then(() => {
       setFetchingPublishedRecords(false);
@@ -87,7 +120,6 @@ const ClubRecords = () => {
       })
     });
   }, [fetchAllClubRecords]);
-
 
   useEffect(() => {
     fetchPendingClubRecords().then(() => {
@@ -109,7 +141,6 @@ const ClubRecords = () => {
             <TextButton
               text="View Record"
               textColor={redColor}
-              // onClick={openEditPopup}
             ></TextButton>
           );
           record.timestamp = convertDateTime(record.lastModified).date;
@@ -124,11 +155,11 @@ const ClubRecords = () => {
             <TextButton
               text="Manage Record"
               textColor={redColor}
-              onClick={openEditPopup}
+              onClick={openEditPopup(record)}
             ></TextButton>
           );
-          record.timestamp = convertDateTime(record.lastModified).date;
-          record.result = (record.recordValue / 1000).toFixed(2);
+          record.timestamp = convertDateTime(record.timestamp).date;
+          record.result = (record.currentRecordValue / 1000).toFixed(2);
           return record;
         })
       );
@@ -139,7 +170,8 @@ const ClubRecords = () => {
     setShowEditPopup(false);
   };
 
-  const openEditPopup = () => {
+  const openEditPopup = (selectedRecord) => {
+    setSelectedClubRecordResult(selectedRecord);
     setShowEditPopup(true);
   };
 
@@ -194,7 +226,11 @@ const ClubRecords = () => {
           <div style={{ textAlign: 'center' }}>Club records not found</div>
         )}
       </AdminTablePageLayout>
-      <RecordEditPopup showPopup={showEditPopup} closePopup={closeEditPopup} />
+      <RecordEditPopup
+        selectedClubRecordResult={selectedClubRecordResult}
+        showPopup={showEditPopup}
+        closePopup={closeEditPopup}
+        changeStatus={changeStatusOfPendingClubRecordResult} />
     </>
   );
 };
