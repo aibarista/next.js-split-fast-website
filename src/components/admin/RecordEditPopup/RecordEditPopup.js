@@ -10,8 +10,14 @@ import CustomButton, {
 import IconTextButton from 'components/common/IconTextButton';
 import { redColor, whiteColor } from 'config/global';
 import ConfirmPopup from '../ConfirmPopup';
+import { convertDateTime } from 'utils/time';
 
-const RecordEditPopup = ({ showPopup, closePopup }) => {
+const RecordEditPopup = ({ 
+  showPopup, 
+  closePopup, 
+  selectedClubRecordResult, 
+  changeStatus 
+}) => {
   const [popupState, setPopupState] = useState('publish');
   const [confirmState, setConfirmState] = useState(false);
 
@@ -30,11 +36,15 @@ const RecordEditPopup = ({ showPopup, closePopup }) => {
     setConfirmState(false);
   };
 
+  const discardRecord = () => {
+    changeStatus("Rejected");
+    setConfirmState(false);
+  }
+
   return (
     <div
-      className={`${styles.recordEditPopupOverlay} ${
-        showPopup ? styles.active : ''
-      }`}
+      className={`${styles.recordEditPopupOverlay} ${showPopup ? styles.active : ''
+        }`}
     >
       <div className={styles.recordEditPopup}>
         <div className={styles.recordEditPopupContainer}>
@@ -48,12 +58,12 @@ const RecordEditPopup = ({ showPopup, closePopup }) => {
                 Current Record
               </div>
               <div className={styles.currentRecordColumn}>
-                <div>70m</div>
-                <div>9</div>
-                <div>Male</div>
-                <div>19:56</div>
-                <div>Sam Carson</div>
-                <div>Oct 11,1999</div>
+                <div>{selectedClubRecordResult?.eventType}</div>
+                <div>{selectedClubRecordResult?.ageGroup}</div>
+                <div>{selectedClubRecordResult?.gender}</div>
+                <div>{selectedClubRecordResult?.currentRecordValue}</div>
+                <div>{`${selectedClubRecordResult?.athleteFirstName} ${selectedClubRecordResult?.athleteLastName}`}</div>
+                <div>{convertDateTime(selectedClubRecordResult?.timestamp).date || ""}</div>
               </div>
             </div>
             <div className={styles.newRecord}>
@@ -72,22 +82,22 @@ const RecordEditPopup = ({ showPopup, closePopup }) => {
                   </div>
                 </div>
                 <div className={styles.recordTableBody}>
-                  <div className={styles.bodyItem}>70m</div>
-                  <div className={styles.bodyItem}>9</div>
-                  <div className={styles.bodyItem}>Male</div>
+                  <div className={styles.bodyItem}>{selectedClubRecordResult?.eventType}</div>
+                  <div className={styles.bodyItem}>{selectedClubRecordResult?.ageGroup}</div>
+                  <div className={styles.bodyItem}>{selectedClubRecordResult?.gender}</div>
                   <div className={styles.bodyItem}>
                     {popupState === 'publish' ? (
-                      '19:56'
+                      selectedClubRecordResult?.currentRecordValue
                     ) : (
                       <input
                         className={styles.changeResult}
-                        value={'19:56'}
+                        value={selectedClubRecordResult?.currentRecordValue}
                       ></input>
                     )}
                   </div>
-                  <div className={styles.bodyItem}>Sam Carson</div>
+                  <div className={styles.bodyItem}>{`${selectedClubRecordResult?.athleteFirstName} ${selectedClubRecordResult?.athleteLastName}`}</div>
                   <div className={`${styles.bodyItem} ${styles.lastBodyItem}`}>
-                    Oct 11,1999
+                  {convertDateTime(selectedClubRecordResult?.timestamp).date || ""}
                   </div>
                 </div>
               </div>
@@ -127,7 +137,7 @@ const RecordEditPopup = ({ showPopup, closePopup }) => {
                   fontSize: 21,
                   fontWeight: 600,
                 }}
-                onClick={() => {}}
+                onClick={() => changeStatus("Approved")}
                 disabled={false}
               >
                 Publish Record
@@ -184,14 +194,16 @@ const RecordEditPopup = ({ showPopup, closePopup }) => {
           <img src={CloseIcon} alt="close" />
         </div>
       </div>
-      <ConfirmPopup showPopup={confirmState} closePopup={closeConfirmPopup} />
+      <ConfirmPopup showPopup={confirmState} closePopup={closeConfirmPopup} discardRecord={discardRecord} />
     </div>
   );
 };
 
 RecordEditPopup.propTypes = {
   showPopup: PropTypes.bool,
-  closePopup: PropTypes.bool,
+  closePopup: PropTypes.func,
+  selectedClubRecordResult: PropTypes.object,
+  changeStatus: PropTypes.func
 };
 
 export default RecordEditPopup;

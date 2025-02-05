@@ -3,8 +3,9 @@ import styles from './ConfirmPopup.module.css';
 import CustomButton, {
   defaultButtonStyle,
 } from 'components/common/CustomButton';
+import PropTypes from 'prop-types';
 
-const ConfirmPopup = ({ showPopup, closePopup }) => {
+const ConfirmPopup = ({ showPopup, closePopup, discardRecord }) => {
   return (
     <div
       className={`${styles.confirmPopupOverlay} ${
@@ -45,7 +46,7 @@ const ConfirmPopup = ({ showPopup, closePopup }) => {
                 fontSize: 18,
                 fontWeight: 600,
               }}
-              onClick={() => {}}
+              onClick={discardRecord}
               disabled={false}
             >
               Yes, delete
@@ -56,5 +57,11 @@ const ConfirmPopup = ({ showPopup, closePopup }) => {
     </div>
   );
 };
+
+ConfirmPopup.propTypes = {
+    showPopup: PropTypes.bool,
+    closePopup: PropTypes.func,
+    discardRecord: PropTypes.func
+}
 
 export default ConfirmPopup;
