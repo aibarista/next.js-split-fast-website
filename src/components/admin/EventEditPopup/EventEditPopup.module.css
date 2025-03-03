@@ -18,9 +18,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  height: 90%;
-  max-width: 1170px;
-  max-height: 915px;
+  max-width: 768px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   background: #ffffff 0 0 no-repeat padding-box;
   padding: 40px 0 20px;
@@ -54,14 +52,6 @@
   margin-bottom: 9px;
 }
 
-.table {
-  margin: 0 40px 15px;
-}
-
-/* .tableWrapper {
-  min-width: 720px;
-} */
-
 .delete {
   width: 24px;
   height: 24px;
@@ -80,6 +70,10 @@
 .buttonWrapper {
   width: 100%;
   padding: 0 40px 10px;
+}
+
+.form {
+  padding: 40px;
 }
 
 .buttons {
@@ -148,47 +142,6 @@
 
 .closeBtn img {
   display: block;
-}
-
-.noData {
-  text-align: center;
-}
-
-@media screen and (max-width: 992px) {
-  .resultEditPopup {
-    max-height: unset;
-    padding-top: 20px;
-  }
-
-  .table {
-    margin: 0 15px;
-  }
-
-  .buttonWrapper {
-    padding: 0 15px 10px;
-  }
-
-  .title {
-    margin-top: 40px;
-    font-size: 25px;
-  }
-
-  .buttons {
-    display: block;
-    margin: auto;
-    width: fit-content;
-    max-width: 90%;
-  }
-
-  .button {
-    margin-bottom: 20px;
-    max-width: 100%;
-  }
-
-  .goBack {
-    top: 8px;
-    left: 10px;
-  }
 }
 
 @media screen and (max-width: 768px) {

@@ -41,7 +41,7 @@ const ClubDashboard = () => {
 
   const fetchRecentMeets = useCallback(async () => {
     try {
-      if (selectedClub) {
+      if (selectedClub?.clubID) {
         const response = await getRecentMeets(selectedClub?.clubID || '');
         const meets = response.data;
 
@@ -50,11 +50,11 @@ const ClubDashboard = () => {
     } catch (err) {
       console.log('[ClubDashboard] Fetch Meets error: ', err);
     }
-  }, [selectedClub]);
+  }, [selectedClub?.clubID]);
 
   const fetchUpcomingMeets = useCallback(async () => {
     try {
-      if (selectedClub) {
+      if (selectedClub?.clubID) {
         const response = await getUpcomingMeets(selectedClub?.clubID || '');
 
         setUpcomingMeets(getUpcomingMeetData(response.data));
@@ -62,11 +62,11 @@ const ClubDashboard = () => {
     } catch (err) {
       console.log('[ClubDashboard] Fetch Upcoming Meets error: ', err);
     }
-  }, [selectedClub]);
+  }, [selectedClub?.clubID]);
 
   const fetchHighlight = useCallback(async () => {
     try {
-      if (selectedClub) {
+      if (selectedClub?.clubID) {
         const response = await getResultHighlights(
           selectedClub?.clubID || '',
           resultHighlightsTableRowLimit
@@ -79,7 +79,7 @@ const ClubDashboard = () => {
     } catch (err) {
       console.log('[ClubDashboard] Fetch Highlight error: ', err);
     }
-  }, [selectedClub]);
+  }, [selectedClub?.clubID]);
 
   useEffect(() => {
     fetchRecentMeets().then(() => {

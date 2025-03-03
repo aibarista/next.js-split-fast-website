@@ -27,12 +27,12 @@ import {
  *   - {string} ageGroups - A comma-separated string of age group labels.
  *   - {string} eventTypes - A comma-separated string of event type labels.
  */
-export const generateMeetDetail = (meet) => {
+export const generateMeetDetail = (meet, isLabel2 = false) => {
   return {
     ...meet,
     meetType: meet.meetType === 0 ? 'Training' : 'Competition',
     ageGroups: getAgeGroupLabel(meet.ageGroups).join(', '),
-    eventTypes: getEventTypeLabel(meet.eventTypes).join(', '),
+    eventTypes: getEventTypeLabel(meet.eventTypes, isLabel2).join(', '),
   };
 };
 
@@ -101,17 +101,69 @@ export const getAgeGroupLabel = (ageGroups) => {
  * - The `pushEventTypeLabel` function properly handles matching IDs and appending labels to the array.
  */
 
-export const getEventTypeLabel = (eventTypes) => {
+export const getEventTypeLabel = (
+  eventTypes,
+  isLabel2 = false,
+  withValue = false
+) => {
   const eventTypeLabels = [];
 
-  pushEventTypeLabel(eventTypes, eventTypeLabels, multiLaneSprintEventOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, hurdleEventOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, relayEventOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, groupDistanceEventOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, walkEventOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, sprintAgilityTrainingOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, fieldEventOptions);
-  pushEventTypeLabel(eventTypes, eventTypeLabels, statusOptions);
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    multiLaneSprintEventOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    hurdleEventOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    relayEventOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    groupDistanceEventOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    walkEventOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    sprintAgilityTrainingOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    fieldEventOptions,
+    isLabel2,
+    withValue
+  );
+  pushEventTypeLabel(
+    eventTypes,
+    eventTypeLabels,
+    statusOptions,
+    isLabel2,
+    withValue
+  );
 
   return eventTypeLabels;
 };
@@ -153,13 +205,20 @@ export const getEventTypeLabel = (eventTypes) => {
 export const pushEventTypeLabel = (
   eventTypes,
   eventTypeLabels,
-  eventOptions
+  eventOptions,
+  isLabel2 = false,
+  withValue = false
 ) => {
   eventTypes.split(',').forEach((eventType) => {
     const option = eventOptions.find((option) => option.value === eventType);
 
     if (option) {
-      eventTypeLabels.push(option.label);
+      const label = isLabel2 && option.label2 ? option.label2 : option.label;
+      if (withValue) {
+        eventTypeLabels.push({ value: eventType, label });
+      } else {
+        eventTypeLabels.push(label);
+      }
     }
   });
 };

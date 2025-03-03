@@ -50,7 +50,10 @@ export const resultsToTableData = (results, eventType) => {
           attempt5: result.attempts?.length > 4 ? result.attempts[4] : null,
           attempt6: result.attempts?.length > 5 ? result.attempts[5] : null,
           attempts: result?.attempts?.map((attempt, index) => (
-            <div style={{ paddingLeft: 20, minWidth: 70 }} key={index}>
+            <div
+              style={{ paddingLeft: 15, minWidth: 70, paddingRight: 10 }}
+              key={index}
+            >
               {attempt.status === 'OK'
                 ? `${attempt.distance.toFixed(2)} m`
                 : attempt.status === 'Foul'

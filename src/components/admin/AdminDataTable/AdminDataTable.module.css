@@ -207,16 +207,18 @@
 
 .cellInput {
   width: calc(60% - 10px);
+  min-width: 70px;
   margin-right: 10px;
 }
 
 .cellTextInput {
-  width: 70px;
+  width: 85%;
   margin-left: 10px;
 }
 
 .cellSelect {
   width: 40%;
+  min-width: 50px;
 }
 
 .cellSelectHighJump {

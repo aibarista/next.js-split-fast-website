@@ -29,16 +29,16 @@ export const multiLaneSprintEventOptions = [
 ];
 
 export const hurdleEventOptions = [
-  { value: '29', label: '100mH' },
-  { value: '23', label: '110mH' },
-  { value: '26', label: '400mH' },
+  { value: '29', label: '100mH', label2: '100mH Hurdles' },
+  { value: '23', label: '110mH', label2: '100mH Hurdles' },
+  { value: '26', label: '400mH', label2: '100mH Hurdles' },
 ];
 
 export const relayEventOptions = [
-  { value: '27', label: '4x70' },
-  { value: '28', label: '4x100' },
-  { value: '34', label: '4x200' },
-  { value: '35', label: '4x400' },
+  { value: '27', label: '4x70m' },
+  { value: '28', label: '4x100m' },
+  { value: '34', label: '4x200m' },
+  { value: '35', label: '4x400m' },
 ];
 
 export const groupDistanceEventOptions = [
@@ -48,11 +48,11 @@ export const groupDistanceEventOptions = [
 ];
 
 export const walkEventOptions = [
-  { value: '41', label: '300m' },
-  { value: '45', label: '500m' },
-  { value: '42', label: '700m' },
-  { value: '43', label: '1100m' },
-  { value: '44', label: '1500m' },
+  { value: '41', label: '300m', label2: '300m Walk' },
+  { value: '45', label: '500m', label2: '500m Walk' },
+  { value: '42', label: '700m', label2: '700m Walk' },
+  { value: '43', label: '1100m', label2: '1100m Walk' },
+  { value: '44', label: '1500m', label2: '1500m Walk' },
 ];
 
 export const sprintAgilityTrainingOptions = [

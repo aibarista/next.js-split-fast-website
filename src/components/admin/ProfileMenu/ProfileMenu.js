@@ -8,6 +8,8 @@ import { logout } from 'api/authApi';
 import styles from './ProfileMenu.module.css';
 import SimpleProfile from 'components/common/SimpleProfile';
 import { getUserEmail } from '../../../services/auth/tokenService';
+import { useDispatch } from 'react-redux';
+import { logout as logoutSlice } from 'services/user/userSlice';
 
 const ProfileMenu = ({ user, clubId }) => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const ProfileMenu = ({ user, clubId }) => {
 
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (showMenu) {
@@ -31,6 +34,13 @@ const ProfileMenu = ({ user, clubId }) => {
       };
     }
   }, [showMenu]);
+
+  const handleLogout = () => {
+    logout().then(() => {
+      dispatch(logoutSlice());
+      navigate(routes.client.home);
+    });
+  };
 
   return (
     <div
@@ -52,7 +62,7 @@ const ProfileMenu = ({ user, clubId }) => {
             </div>
             <div
               onClick={() => {
-                logout().then(() => navigate(routes.client.home));
+                handleLogout();
               }}
               className={`${styles.menuItem} ${styles.menuItemActive}`}
             >

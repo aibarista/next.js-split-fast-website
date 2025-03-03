@@ -112,6 +112,10 @@
   pointer-events: all;
 }
 
+.textActive {
+  color: #cf2c47;
+}
+
 .goBack {
   display: flex;
   align-items: center;
@@ -183,11 +187,12 @@
 
 .currentRecordColumn {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 3fr 2fr;
+  grid-template-columns: 2fr 2fr 2fr 2fr 3fr 2fr;
   width: 100%;
   grid-gap: 10px 10px;
   background-color: #dadada;
   padding: 20px;
+  font-weight: 600;
 }
 .recordTableWapper {
   width: 100%;
@@ -200,9 +205,8 @@
 }
 
 .recordTableHeader {
-  min-width: 1050px;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 3fr 2fr;
+  grid-template-columns: 2fr 2fr 2fr 2fr 3fr 2fr;
   width: 100%;
   font-weight: bold;
   color: #595959;
@@ -213,7 +217,7 @@
   border-right: 2px solid #e2e2e2;
   height: 100%;
   width: 100%;
-  padding: 25px 20px;
+  padding: 25px 0 25px 16px;
   border-bottom: 2px solid #e2e2e2;
 }
 
@@ -223,10 +227,9 @@
 }
 
 .recordTableBody {
-  min-width: 1050px;
   color: #595959;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 3fr 2fr;
+  grid-template-columns: 2fr 2fr 2fr 2fr 3fr 2fr;
   width: 100%;
 }
 

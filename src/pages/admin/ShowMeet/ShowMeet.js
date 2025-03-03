@@ -35,7 +35,7 @@ const ShowMeet = () => {
     try {
       const response = await getMeetById(clubId, meetId);
 
-      setMeet(generateMeetDetail(response.data));
+      setMeet(generateMeetDetail(response.data, true));
     } catch (err) {
       console.log('[ShowMeet] Fetch meet error: ', err);
       if (err.status === 404) {

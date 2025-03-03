@@ -10,6 +10,7 @@ const TableFilter = ({
   showPopup,
   closePopup,
   handleFilterChange,
+  title = 'Results',
 }) => {
   const [selectedFilterValues, setSelectedFilterValues] = useState({});
 
@@ -52,10 +53,10 @@ const TableFilter = ({
     >
       <div className={styles.filterPopup}>
         <div className={styles.filterPopupContainer}>
-          <h3 className={styles.title}>Filter Results</h3>
+          <h3 className={styles.title}>Filter {title} </h3>
           <div className={styles.inputContainer}>
             {Object.keys(filters).map((columnKey) =>
-              filters[columnKey].values.length > 1 ? (
+              filters[columnKey].values.length > 0 ? (
                 <SearchSelect
                   key={columnKey}
                   title={`Filter by ${filters[columnKey].label}`}
@@ -106,6 +107,7 @@ TableFilter.propTypes = {
   closePopup: PropTypes.func,
   handleFilterChange: PropTypes.func,
   columnKey: PropTypes.string,
+  title: PropTypes.string,
 };
 
 export default TableFilter;

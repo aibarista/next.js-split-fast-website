@@ -7,6 +7,7 @@ import { ReactComponent as TeamIcon } from 'assets/images/icon_team.svg';
 import { ReactComponent as CompetitionIcon } from 'assets/images/icon_competition.svg';
 import { ReactComponent as UserIcon } from 'assets/images/icon_user_setting.svg';
 import { ReactComponent as SettingIcon } from 'assets/images/icon_settings.svg';
+import { ReactComponent as ClubRecordsIcon } from 'assets/images/icon_clubrecords.svg';
 
 export const links = [
   {
@@ -17,7 +18,9 @@ export const links = [
   {
     name: 'Club Records',
     url: routes.admin.clubRecord,
-    icon: <HomeIcon />,
+    icon: <ClubRecordsIcon />,
+    pending: true,
+    allowedRoles: ['Owner', 'Admin', 'Official'],
   },
   {
     name: 'My Dashboard',

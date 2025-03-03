@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import styles from './MenuLinkList.module.css';
 import { links } from 'config/admin/menu';
 import { getClubRole } from 'services/auth/tokenService';
+import { useSelector } from 'react-redux';
 
 const MenuLinkList = ({ closeMenu }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const clubRole = getClubRole();
+  const { clubRecordsPendingCount } = useSelector((state) => state.user || 0);
 
   return (
     <div className={styles.menuLinkList}>
@@ -27,6 +29,11 @@ const MenuLinkList = ({ closeMenu }) => {
             >
               <div className={styles.image}>{link.icon}</div>
               <div className={styles.menuLinkName}>{link.name}</div>
+              {link.pending && clubRecordsPendingCount > 0 && (
+                <div className={styles.badge}>
+                  {clubRecordsPendingCount} new
+                </div>
+              )}
             </div>
           )
       )}

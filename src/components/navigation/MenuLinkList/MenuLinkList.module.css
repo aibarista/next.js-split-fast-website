@@ -56,3 +56,18 @@
     margin-right: 32px;
   }
 }
+
+.badge {
+  margin-left: 10px;
+  background-color: #cf2c47;
+  color: white;
+  border-radius: 12px;
+  font-size: 12px;
+  display: flex;
+  height: 20px;
+  min-width: 50px;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding-bottom: 1px;
+}

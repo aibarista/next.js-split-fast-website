@@ -28,6 +28,8 @@ import CustomButton, {
   defaultButtonStyle,
 } from 'components/common/CustomButton';
 
+import ConfirmPopup from 'components/admin/ConfirmPopup';
+
 const ResultEditPopup = ({
   resultType,
   results = [],
@@ -47,6 +49,8 @@ const ResultEditPopup = ({
 
   const [tableData, setTableData] = useState([]);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [confirmingResult, setConfirmingResult] = useState(null);
 
   const convertResultsToTableData = (results) => {
     if (results.length) {
@@ -57,7 +61,10 @@ const ResultEditPopup = ({
           ...item,
           resultValue: convertMillisecondsToRecord(item.resultRawValue),
           buttons: (
-            <div className={styles.delete}>
+            <div
+              className={styles.delete}
+              onClick={() => openConfirmPopup(item)}
+            >
               <DeleteIcon />
             </div>
           ),
@@ -91,6 +98,42 @@ const ResultEditPopup = ({
           : row
       )
     );
+  };
+
+  const openConfirmPopup = (item) => {
+    setShowConfirm(true);
+    setConfirmingResult(item);
+  };
+
+  const closeConfirmPopup = () => {
+    setShowConfirm(false);
+    setConfirmingResult(null);
+  };
+
+  const deleteResult = () => {
+    console.log('delete result', confirmingResult);
+    // TODO - Integrate Result delete API and refresh results
+    setShowConfirm(false);
+    setConfirmingResult(null);
+  };
+
+  const addResult = () => {
+    let columns = null;
+    if (results[0]?.unit === 'm' || eventType === 'High Jump') {
+      columns = editFieldEventColumns(results, eventType);
+    } else {
+      columns = editTrackEventColumns;
+    }
+    const newRow = columns
+      .map((c) => c.accessor)
+      .reduce((acc, key) => {
+        acc[key] = '';
+        return acc;
+      }, {});
+    let newTableData = [];
+    tableData.forEach((td) => newTableData.push(td));
+    newTableData.push(newRow);
+    setTableData(newTableData);
   };
 
   const saveResults = async () => {
@@ -187,9 +230,6 @@ const ResultEditPopup = ({
             unit: 's',
             status: result.status,
           }));
-
-          console.log(requestBody);
-
           await updateResults(
             eventType,
             ageGroup,
@@ -292,14 +332,14 @@ const ResultEditPopup = ({
                 width: 'fit-content',
                 height: 'fit-content',
               }}
-              onClick={() => console.log('add result')}
+              onClick={() => addResult()}
             >
               + Add result
             </CustomButton>
           </div>
           <div className={styles.table}>
             <div className={styles.tableWrapper}>
-              {tableData.length ? (
+              {tableData.length > 0 ? (
                 <AdminDataTable
                   isEditable={true}
                   borderType="full"
@@ -312,6 +352,7 @@ const ResultEditPopup = ({
                   primaryField={editColumnPrimaryField}
                   data={tableData}
                   handleValueChange={handleValueChange}
+                  openConfirmPopup={openConfirmPopup}
                   searchInputPlaceholder=""
                   headStyle={{
                     gridTemplateColumns:
@@ -393,6 +434,13 @@ const ResultEditPopup = ({
           <img src={CloseIcon} alt="close" />
         </div>
       </div>
+      <ConfirmPopup
+        title={'Do you really want to delete this result?'}
+        subTitle={`You won't be able to recover it once it has been deleted.`}
+        showPopup={showConfirm}
+        closePopup={closeConfirmPopup}
+        confirm={deleteResult}
+      />
     </div>
   );
 };

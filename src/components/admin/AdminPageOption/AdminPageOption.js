@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AdminPageOption.module.css';
-import CustomButton from '../../common/CustomButton';
+import CustomButton from 'components/common/CustomButton';
 
 const AdminPageOption = ({
   clubRole,
@@ -14,6 +14,9 @@ const AdminPageOption = ({
   buttonStyle,
   handleButton,
   buttonDisabled,
+  hasImportButton = false,
+  handleImportButton,
+  handleExportButton,
 }) => {
   return (
     <div className={styles.adminPageOptionWrapper}>
@@ -35,13 +38,55 @@ const AdminPageOption = ({
       </div>
       <div className={styles.viewTypeOptions}>
         {hasButton ? (
-          <CustomButton
-            disabled={buttonDisabled}
-            style={buttonStyle}
-            onClick={handleButton}
-          >
-            {buttonLabel}
-          </CustomButton>
+          <>
+            {hasImportButton && (
+              <>
+                <CustomButton
+                  disabled={buttonDisabled}
+                  style={{
+                    fontWeight: 600,
+                    backgroundColor: '#889398',
+                    marginRight: 10,
+                    color: '#fff',
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    marginBottom: 0,
+                    height: 'auto',
+                  }}
+                  onClick={handleImportButton}
+                >
+                  Import
+                </CustomButton>
+                <CustomButton
+                  disabled={buttonDisabled}
+                  style={{
+                    fontWeight: 600,
+                    backgroundColor: '#889398',
+                    marginRight: 10,
+                    color: '#fff',
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    paddingTop: 10,
+                    paddingBottom: 10,
+                    marginBottom: 0,
+                    height: 'auto',
+                  }}
+                  onClick={handleExportButton}
+                >
+                  Export
+                </CustomButton>
+              </>
+            )}
+            <CustomButton
+              disabled={buttonDisabled}
+              style={buttonStyle}
+              onClick={handleButton}
+            >
+              {buttonLabel}
+            </CustomButton>
+          </>
         ) : (
           viewTypeOptions.map((option, index) => (
             <div
@@ -72,6 +117,9 @@ AdminPageOption.propTypes = {
   buttonStyle: PropTypes.object,
   handleButton: PropTypes.func,
   buttonDisabled: PropTypes.bool,
+  hasImportButton: PropTypes.bool,
+  handleImportButton: PropTypes.func,
+  handleExportButton: PropTypes.func,
 };
 
 export default AdminPageOption;

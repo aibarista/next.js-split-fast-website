@@ -1,7 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateClubs, updateSelectedClub } from 'services/user/userSlice';
+import {
+  updateClubs,
+  updateSelectedClub,
+  updateClubRecordsPendingCount,
+  logout as logoutSlice,
+} from 'services/user/userSlice';
 import { toast } from 'react-toastify';
 
 import routes from 'routes';
@@ -12,6 +17,8 @@ import AdminMenu from 'components/navigation/AdminMenu';
 import Loading from 'components/common/Loading';
 
 import { getClubs } from 'api/clubApi';
+import { getPendingClubRecordsCount } from 'api/clubApi';
+
 import { getToken, setClubRole } from 'services/auth/tokenService';
 import { decodeToken } from 'utils/auth';
 import { logout } from 'api/authApi';
@@ -34,12 +41,22 @@ const AdminLayout = () => {
         toast.error('No authentication');
         navigate(routes.auth.login);
       }
+      if (selectedClub) {
+        // return if clubs already fetched
+        return;
+      }
       const response = await getClubs();
       const clubs = response.data;
       if (clubs.length > 0) {
         dispatch(updateClubs(clubs));
         dispatch(updateSelectedClub(clubs[0]));
         setClubRole(clubs[0]?.userRole);
+        if (['Owner', 'Admin', 'Official'].includes(clubs[0]?.userRole)) {
+          const response2 = await getPendingClubRecordsCount(clubs[0]?.clubID);
+          if (response2.data) {
+            dispatch(updateClubRecordsPendingCount(response2.data.count));
+          }
+        }
       } else {
         const portalRole = decodeToken(token).userRole;
 
@@ -53,11 +70,13 @@ const AdminLayout = () => {
       console.log('[AdminLayout] Fetch Club error: ', err);
       if (err.status === 401) {
         console.log('token expired');
-        logout();
-        navigate(routes.auth.login);
+        logout().then(() => {
+          dispatch(logoutSlice());
+          navigate(routes.client.home);
+        });
       }
     }
-  }, [navigate, dispatch]);
+  }, [navigate, dispatch, selectedClub]);
 
   useEffect(() => {
     fetchClubs().then(() => {

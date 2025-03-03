@@ -71,11 +71,97 @@ export const columns = [
     label: 'Results',
     headerStyle: {
       paddingLeft: 20,
+      minWidth: 145,
     },
     style: {
       ...tableButtonStyle,
       backgroundColor: 'transparent',
       margin: '0 auto 0 5px',
+      minWidth: 140,
+    },
+  },
+];
+
+export const exportColumns = [
+  {
+    accessor: 'isCheck',
+    label: '',
+    checkboxEnable: true,
+    headerStyle: {
+      paddingLeft: 20,
+      paddingRight: 25,
+      justifyContent: 'space-between',
+    },
+    style: {
+      paddingLeft: 20,
+    },
+  },
+  {
+    accessor: 'eventType',
+    label: 'Event',
+    checkbox: false,
+    filterable: true,
+    headerStyle: {
+      paddingLeft: 20,
+      paddingRight: 25,
+      justifyContent: 'space-between',
+    },
+    style: {
+      paddingLeft: 20,
+    },
+  },
+  {
+    accessor: 'gender',
+    label: 'Gender',
+    checkbox: false,
+    filterable: true,
+    headerStyle: {
+      paddingLeft: 22,
+      paddingRight: 5,
+      minWidth: 58,
+    },
+    style: {
+      paddingLeft: 22,
+      minWidth: 58,
+    },
+  },
+  {
+    accessor: 'ageGroup',
+    label: 'Age Group',
+    checkbox: false,
+    filterable: true,
+    headerStyle: {
+      paddingLeft: 22,
+      paddingRight: 5,
+      minWidth: 58,
+    },
+    style: {
+      paddingLeft: 22,
+      minWidth: 58,
+    },
+  },
+  {
+    accessor: 'roundType',
+    label: 'Round Type',
+    checkbox: false,
+    filterable: true,
+    headerStyle: {
+      paddingLeft: 20,
+    },
+    style: {
+      paddingLeft: 20,
+    },
+  },
+  {
+    accessor: 'status',
+    label: 'Event Status',
+    checkbox: false,
+    filterable: true,
+    headerStyle: {
+      paddingLeft: 20,
+    },
+    style: {
+      paddingLeft: 20,
     },
   },
 ];

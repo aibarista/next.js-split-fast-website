@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './ConfirmPopup.module.css';
 import CustomButton, {
   defaultButtonStyle,
 } from 'components/common/CustomButton';
 import PropTypes from 'prop-types';
 
-const ConfirmPopup = ({ showPopup, closePopup, discardRecord }) => {
+const ConfirmPopup = ({ title, subTitle, showPopup, closePopup, confirm }) => {
   return (
     <div
       className={`${styles.confirmPopupOverlay} ${
@@ -14,12 +14,8 @@ const ConfirmPopup = ({ showPopup, closePopup, discardRecord }) => {
     >
       <div className={styles.confirmPopup}>
         <div className={styles.confirmPopupContainer}>
-          <div className={styles.title}>
-            Do you really want to discard this record?
-          </div>
-          <div className={styles.subtitle}>
-            You won't be able to recover it once it has been discarded.
-          </div>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.subtitle}>{subTitle}</div>
           <div className={styles.buttons}>
             <CustomButton
               style={{
@@ -46,7 +42,7 @@ const ConfirmPopup = ({ showPopup, closePopup, discardRecord }) => {
                 fontSize: 18,
                 fontWeight: 600,
               }}
-              onClick={discardRecord}
+              onClick={confirm}
               disabled={false}
             >
               Yes, delete
@@ -59,9 +55,11 @@ const ConfirmPopup = ({ showPopup, closePopup, discardRecord }) => {
 };
 
 ConfirmPopup.propTypes = {
-    showPopup: PropTypes.bool,
-    closePopup: PropTypes.func,
-    discardRecord: PropTypes.func
-}
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
+  showPopup: PropTypes.bool,
+  closePopup: PropTypes.func,
+  confirm: PropTypes.func,
+};
 
 export default ConfirmPopup;

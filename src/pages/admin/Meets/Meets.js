@@ -53,7 +53,7 @@ const Meets = () => {
 
   const fetchUpcomingMeets = useCallback(async () => {
     try {
-      if (selectedClub) {
+      if (selectedClub?.clubID) {
         const response = await getFilteredMeets(
           selectedClub?.clubID || '',
           ['Upcoming'],
@@ -66,11 +66,11 @@ const Meets = () => {
     } catch (err) {
       console.log('[Meets] Fetch Upcoming Meets error: ', err);
     }
-  }, [selectedClub]);
+  }, [selectedClub?.clubID]);
 
   const fetchCompleteMeets = useCallback(async () => {
     try {
-      if (selectedClub) {
+      if (selectedClub?.clubID) {
         const response = await getFilteredMeets(
           selectedClub?.clubID || '',
           ['Complete'],
@@ -83,11 +83,11 @@ const Meets = () => {
     } catch (err) {
       console.log('[Meets] Fetch Complete Meets error: ', err);
     }
-  }, [selectedClub]);
+  }, [selectedClub?.clubID]);
 
   const fetchDraftMeets = useCallback(async () => {
     try {
-      if (selectedClub && clubRole !== 'Member') {
+      if (selectedClub?.clubID && clubRole !== 'Member') {
         const response = await getFilteredMeets(
           selectedClub?.clubID || '',
           ['Draft'],
@@ -100,7 +100,7 @@ const Meets = () => {
     } catch (err) {
       console.log('[Meets] Fetch Draft Meets error: ', err);
     }
-  }, [selectedClub, clubRole]);
+  }, [selectedClub?.clubID, clubRole]);
 
   useEffect(() => {
     fetchUpcomingMeets().then(() => {

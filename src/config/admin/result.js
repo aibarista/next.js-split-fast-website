@@ -49,20 +49,30 @@ export const resultColumns = (results) => {
   return trackEventColumns;
 };
 
+export const resultAttemptsCount = (results) => {
+  if (results[0]?.highJumpAttempts?.length) {
+    return results[0]?.highJumpAttempts?.length;
+  }
+  if (results[0]?.attempts?.length) {
+    return getResultAttemptCount(results);
+  }
+  return 0;
+};
+
 export const trackEventColumns = [
   {
     accessor: 'athleteNumber',
     label: 'Club ID',
     headerStyle: {
       fontSize: 13,
-      paddingLeft: 21,
-      minWidth: 154,
+      paddingLeft: 16,
+      minWidth: 70,
       letterSpacing: -0.3,
     },
     style: {
       fontSize: 13,
-      paddingLeft: 21,
-      minWidth: 154,
+      paddingLeft: 16,
+      minWidth: 70,
     },
   },
   {
@@ -166,14 +176,14 @@ export const fieldEventColumns = (attemptNumber) => {
       label: 'Club ID',
       headerStyle: {
         fontSize: 13,
-        paddingLeft: 21,
-        minWidth: 154,
+        paddingLeft: 16,
+        minWidth: 90,
         letterSpacing: -0.3,
       },
       style: {
         fontSize: 13,
-        paddingLeft: 21,
-        minWidth: 154,
+        paddingLeft: 16,
+        minWidth: 90,
       },
     },
     {
@@ -181,7 +191,6 @@ export const fieldEventColumns = (attemptNumber) => {
       label: 'Name',
       headerStyle: {
         paddingLeft: 20,
-        paddingRight: 25,
         justifyContent: 'space-between',
       },
       style: {
@@ -193,7 +202,6 @@ export const fieldEventColumns = (attemptNumber) => {
       label: 'Gender',
       headerStyle: {
         paddingLeft: 20,
-        paddingRight: 25,
         justifyContent: 'space-between',
       },
       style: {
@@ -205,7 +213,6 @@ export const fieldEventColumns = (attemptNumber) => {
       label: 'Age',
       headerStyle: {
         paddingLeft: 20,
-        paddingRight: 25,
         justifyContent: 'space-between',
       },
       style: {
@@ -219,7 +226,6 @@ export const fieldEventColumns = (attemptNumber) => {
       sortable: false,
       headerStyle: {
         paddingLeft: 22,
-        paddingRight: 5,
         minWidth: 58,
       },
       style: {
@@ -234,7 +240,6 @@ export const fieldEventColumns = (attemptNumber) => {
       sortable: false,
       headerStyle: {
         paddingLeft: 22,
-        paddingRight: 5,
         minWidth: 58,
       },
       style: {
@@ -249,7 +254,6 @@ export const fieldEventColumns = (attemptNumber) => {
       sortable: false,
       headerStyle: {
         paddingLeft: 22,
-        paddingRight: 10,
       },
       style: {
         paddingLeft: 22,
@@ -261,12 +265,14 @@ export const fieldEventColumns = (attemptNumber) => {
       checkbox: false,
       sortable: false,
       headerStyle: {
-        paddingLeft: 22,
+        paddingLeft: 15,
         paddingRight: 10,
+        minWidth: 90,
       },
       style: {
         display: 'grid',
         gridTemplateColumns: `repeat(${attemptNumber}, 1fr)`,
+        minWidth: 90 * attemptNumber,
       },
     },
   ];
@@ -382,12 +388,13 @@ export const highJumpColumns = (attemptNumber) => {
       checkbox: false,
       sortable: false,
       headerStyle: {
-        paddingLeft: 20,
-        minWidth: 70,
+        paddingLeft: 10,
+        minWidth: 90,
       },
       style: {
         display: 'grid',
         gridTemplateColumns: `repeat(${attemptNumber}, 2fr)`,
+        minWidth: 90 * attemptNumber,
       },
     },
   ];
@@ -397,6 +404,8 @@ export const editTrackEventColumns = [
   {
     accessor: 'athleteNumber',
     label: 'Club ID',
+    editable: true,
+    editType: 'text',
     headerStyle: {
       fontSize: 13,
       paddingLeft: 21,
@@ -405,20 +414,22 @@ export const editTrackEventColumns = [
     },
     style: {
       fontSize: 13,
-      paddingLeft: 21,
+      paddingLeft: 10,
       minWidth: 154,
     },
   },
   {
     accessor: 'athleteName',
     label: 'Name',
+    editable: true,
+    editType: 'text',
     headerStyle: {
       paddingLeft: 20,
       paddingRight: 25,
       justifyContent: 'space-between',
     },
     style: {
-      paddingLeft: 20,
+      paddingLeft: 10,
     },
   },
   {
@@ -513,21 +524,25 @@ export const editFieldEventColumns = (results, eventType) => {
     {
       accessor: 'athleteNumber',
       label: 'Club ID',
+      editable: true,
+      editType: 'text',
       headerStyle: {
         fontSize: 13,
-        paddingLeft: 21,
+        paddingLeft: 20,
         minWidth: 154,
         letterSpacing: -0.3,
       },
       style: {
         fontSize: 13,
-        paddingLeft: 21,
+        paddingLeft: 10,
         minWidth: 154,
       },
     },
     {
       accessor: 'athleteName',
       label: 'Name',
+      editable: true,
+      editType: 'text',
       headerStyle: {
         paddingLeft: 20,
         paddingRight: 25,
@@ -535,7 +550,7 @@ export const editFieldEventColumns = (results, eventType) => {
         justifyContent: 'space-between',
       },
       style: {
-        paddingLeft: 20,
+        paddingLeft: 10,
         minWidth: 150,
       },
     },

@@ -37,6 +37,18 @@ const routes = {
         return `/clubs/${clubId}/meets/${meetId}/events`;
       },
     },
+    addEvent: {
+      path: '/clubs/:clubId/meets/:meetId/events/add',
+      url: (clubId, meetId) => {
+        return `/clubs/${clubId}/meets/${meetId}/events/add`;
+      },
+    },
+    editEvent: {
+      path: '/clubs/:clubId/meets/:meetId/events/edit',
+      url: (clubId, meetId, eventId) => {
+        return `/clubs/${clubId}/meets/${meetId}/events/edit`;
+      },
+    },
     results: {
       path: '/clubs/:clubId/meets/:meetId/results/:eventType/:ageGroup/:gender/:roundType',
       url: (clubId, meetId, eventType, ageGroup, gender, roundType) => {

@@ -222,11 +222,14 @@ export const getPendingClubRecordsCount = async (clubId) => {
   return await authApi.get(`/ClubRecords/pending/count?clubId=${clubId}`);
 };
 
-export const updateStatusOfPendingClubRecordResult = async ( clubId, resultId, newStatus ) => {
+export const updateStatusOfPendingClubRecordResult = async (
+  clubId,
+  resultId,
+  newStatus
+) => {
   return await authApi.post(`/ClubRecords/update-status`, {
     clubId,
     resultId,
-    newStatus
+    newStatus,
   });
-}
-
+};

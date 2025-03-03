@@ -80,6 +80,5 @@ export const meetsToTableData = (meets, clubId) => {
       ),
     });
   });
-
-  return results;
+  return results.sort((a, b) => new Date(b.meetDate) - new Date(a.meetDate));
 };

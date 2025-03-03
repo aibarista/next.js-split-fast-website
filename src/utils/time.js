@@ -73,7 +73,6 @@ export const convertMillisecondsToRecord = (
   milliseconds,
   millisecondZeroCount = 3
 ) => {
-  console.log('millisecondZeroCount', millisecondZeroCount);
   if (milliseconds < 0) {
     throw new Error('Milliseconds cannot be negative');
   }

@@ -66,7 +66,7 @@ const ClubMembers = () => {
 
   const fetchMembers = useCallback(async () => {
     try {
-      if (selectedClub) {
+      if (selectedClub?.clubID) {
         const response = await getMembers(selectedClub?.clubID);
 
         console.log(response.data);
@@ -81,7 +81,7 @@ const ClubMembers = () => {
     } catch (err) {
       console.log('[ClubMembers] Fetch Members error:', err);
     }
-  }, [selectedClub]);
+  }, [selectedClub?.clubID]);
 
   const inviteMember = async (clubId, email) => {
     try {

@@ -1,13 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import routes from 'routes';
-import { getAggEventsByStatus } from 'api/resultApi';
+import { getAggEventsByStatus, exportResultsToFile } from 'api/resultApi';
 import { getMeetById } from 'api/clubApi';
 import { columns } from 'config/admin/event';
 import { dataTypeOptions } from 'config/admin/event';
 import { getClubRole } from 'services/auth/tokenService';
-import { eventsToTableData } from 'services/admin/EventService';
+import {
+  eventsToExportTableData,
+  eventsToTableData,
+} from 'services/admin/EventService';
 import { convertDateTime } from 'utils/time';
 
 import MetaTags from 'components/common/MetaTags';
@@ -15,8 +18,11 @@ import AdminPageHeader from 'components/admin/AdminPageHeader';
 import AdminTablePageLayout from 'components/admin/AdminTablePageLayout';
 import AdminDataTable from 'components/admin/AdminDataTable';
 import AdminPageOption from 'components/admin/AdminPageOption';
+import { defaultButtonStyle } from 'components/common/CustomButton';
+import EventEditPopup from 'components/admin/EventEditPopup';
+import ResultExportPopup from 'components/admin/ResultsExportPopup/ResultsExportPopup';
 
-const Events = () => {
+const Events = ({ isOpenEditPopup = false }) => {
   const clubRole = getClubRole();
   const { clubId, meetId } = useParams();
   const navigate = useNavigate();
@@ -30,8 +36,17 @@ const Events = () => {
   });
   const [meet, setMeet] = useState(null);
   const [events, setEvents] = useState([]);
+  const [allEvents, setAllEvents] = useState([]);
+
   const [pendingEvents, setPendingEvents] = useState([]);
   const [publishedEvents, setPublishedEvents] = useState([]);
+
+  const [showPopup, setShowPopup] = React.useState(isOpenEditPopup);
+  const [showExportPopup, setShowExportPopup] = React.useState(isOpenEditPopup);
+
+  const [csvFormat, setCsvFormat] = useState('sf_csv');
+  const [editMode, setEditMode] = useState('add');
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const fetchPendingEvents = useCallback(async () => {
     try {
@@ -42,7 +57,9 @@ const Events = () => {
           'AdminOnly'
         );
         console.log('Aggregated pending events: ', response.data);
-        setPendingEvents(eventsToTableData(response.data, clubId, meetId));
+        setPendingEvents(
+          eventsToTableData(response.data, clubId, meetId, openEditPopup)
+        );
       }
     } catch (err) {
       console.error('[Events] Fetch pending events error: ', err);
@@ -62,7 +79,9 @@ const Events = () => {
 
       console.log('Aggregated published events: ', response.data);
 
-      setPublishedEvents(eventsToTableData(response.data, clubId, meetId));
+      setPublishedEvents(
+        eventsToTableData(response.data, clubId, meetId, openEditPopup)
+      );
     } catch (err) {
       console.error('[Events] Fetch published events error: ', err);
     }
@@ -78,6 +97,21 @@ const Events = () => {
       console.log('[Events] Fetch Meets error: ', err);
     }
   }, [clubId, meetId]);
+
+  const handleAddEvent = () => {
+    setEditMode('add');
+    setShowPopup(true);
+    navigate(routes.admin.addEvent.url(clubId, meetId));
+  };
+
+  const handleImportResults = () => {
+    console.log('handling import results');
+  };
+
+  const openExportPopup = () => {
+    console.log('handling export results');
+    setShowExportPopup(true);
+  };
 
   useEffect(() => {
     fetchPendingEvents().then(() => {
@@ -103,10 +137,67 @@ const Events = () => {
     } else {
       setEvents(pendingEvents);
     }
+    setAllEvents(eventsToExportTableData(pendingEvents, publishedEvents));
   }, [pendingEvents, publishedEvents, optionValues]);
 
   const handleOptionChange = (name, value) => {
     setOptionValues({ ...optionValues, [name]: value });
+  };
+
+  const closeEditPopup = () => {
+    setShowPopup(false);
+    setSelectedEvent(null);
+    navigate(routes.admin.events.url(clubId, meetId));
+  };
+
+  const closeExportPopup = () => {
+    setShowExportPopup(false);
+    navigate(routes.admin.events.url(clubId, meetId));
+  };
+
+  const handleEventsExport = async () => {
+    setShowExportPopup(false);
+    // navigate(routes.admin.events.url(clubId, meetId));
+    const selectedEvents = allEvents.filter((e) => e.isCheck);
+    const eventIds = selectedEvents.reduce((acc, e) => {
+      acc = [...acc, ...e.eventIDs];
+      return acc;
+    }, []);
+    const data = await exportResultsToFile(clubId, meetId, csvFormat, eventIds);
+    const blob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `athlete_results_${(Date.now() / 1000).toFixed(0)}.csv`; // File name
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const handleEventAdding = async () => {
+    closeEditPopup();
+  };
+
+  const openEditPopup = async (event) => {
+    setEditMode('edit');
+    setSelectedEvent(event);
+    setShowPopup(true);
+  };
+
+  const handleEventSelect = (event) => {
+    setAllEvents((prevData) =>
+      prevData.map((row) =>
+        row.id === event.id
+          ? {
+              ...row,
+              isCheck: !row.isCheck,
+            }
+          : row
+      )
+    );
+  };
+
+  const handleCsvFormatChange = (e) => {
+    setCsvFormat(e.target.value);
   };
 
   return (
@@ -126,15 +217,24 @@ const Events = () => {
           showNumber={false}
           number={events.length}
           name="Event"
-          buttonLabel="+ Add an Event"
-          handleButton={null}
         />
         {['Owner', 'Admin', 'Official'].includes(clubRole) && (
           <AdminPageOption
             dataTypeOptions={dataTypeOptions}
-            hasButton={false}
+            hasButton={true}
             handleOptionChange={handleOptionChange}
             optionValues={optionValues}
+            buttonLabel="+ Add Event"
+            buttonStyle={{
+              ...defaultButtonStyle,
+              marginBottom: 0,
+              height: 'unset',
+              padding: '10px 20px',
+            }}
+            handleButton={handleAddEvent}
+            hasImportButton={true}
+            handleImportButton={handleImportResults}
+            handleExportButton={openExportPopup}
           />
         )}
         {events.length ? (
@@ -157,8 +257,30 @@ const Events = () => {
           </div>
         )}
       </AdminTablePageLayout>
+      <EventEditPopup
+        clubId={clubId}
+        meet={meet}
+        event={selectedEvent}
+        mode={editMode}
+        showPopup={showPopup}
+        closePopup={closeEditPopup}
+        handleButton={handleEventAdding}
+      ></EventEditPopup>
+      <ResultExportPopup
+        showPopup={showExportPopup}
+        onClose={closeExportPopup}
+        handleButton={handleEventsExport}
+        events={allEvents}
+        handleCheckBoxValueChange={handleEventSelect}
+        csvFormat={csvFormat}
+        setCsvFormat={handleCsvFormatChange}
+      ></ResultExportPopup>
     </>
   );
+};
+
+Events.propTypes = {
+  isOpenEditPopup: PropTypes.bool,
 };
 
 export default Events;

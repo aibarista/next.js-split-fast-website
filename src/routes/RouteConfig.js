@@ -173,6 +173,24 @@ const RouteConfig = () => {
           }
         />
         <Route
+          path={routes.admin.addEvent.path}
+          element={
+            <ProtectedRoute>
+              <Events isOpenEditPopup={true} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path={routes.admin.editEvent.path}
+          element={
+            <ProtectedRoute>
+              <Events isOpenEditPopup={true} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path={routes.admin.results.path}
           element={
             <ProtectedRoute>

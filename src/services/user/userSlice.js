@@ -6,6 +6,7 @@ const initialState = {
   selectedClub: null,
   loading: false,
   error: null,
+  clubRecordsPendingCount: 0,
 };
 
 const userSlice = createSlice({
@@ -25,13 +26,20 @@ const userSlice = createSlice({
     updateSelectedClub: (state, action) => {
       state.selectedClub = action.payload;
     },
+    updateClubRecordsPendingCount: (state, action) => {
+      state.clubRecordsPendingCount = action.payload;
+    },
     loginFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
     logout: (state) => {
-      state.selectedClub = null;
+      state.userInfo = null;
       state.clubs = [];
+      state.loading = false;
+      state.selectedClub = null;
+      state.clubRecordsPendingCount = 0;
+      state.error = null;
     },
   },
 });
@@ -43,5 +51,6 @@ export const {
   logout,
   updateClubs,
   updateSelectedClub,
+  updateClubRecordsPendingCount,
 } = userSlice.actions;
 export default userSlice.reducer;

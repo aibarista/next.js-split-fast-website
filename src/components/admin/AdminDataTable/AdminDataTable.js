@@ -12,6 +12,7 @@ import { ReactComponent as FilterIcon } from 'assets/images/icon_filter.svg';
 import DiscusHeaderCell from '../DiscusHeaderCell';
 import HighJumpHeaderCell from '../HighJumpHeaderCell';
 import { getResultHighJumpHeights } from 'config/admin/result';
+import CustomCheckbox from 'components/common/CustomCheckbox';
 
 const AdminDataTable = ({
   data = [],
@@ -25,7 +26,10 @@ const AdminDataTable = ({
   borderType = 'default',
   isShadow = true,
   handleValueChange,
+  openConfirmPopup,
   primaryField = 'id',
+  title = 'Results',
+  handleCheckBoxValueChange,
 }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
@@ -60,8 +64,12 @@ const AdminDataTable = ({
     const matchesSearch = columns.some((column) => {
       const cellValue = row[column.accessor];
       return (
-        cellValue &&
-        cellValue.toString().toLowerCase().includes(searchQuery.toLowerCase())
+        !cellValue ||
+        (cellValue &&
+          cellValue
+            .toString()
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()))
       );
     });
 
@@ -70,7 +78,8 @@ const AdminDataTable = ({
       return (
         !filterValue ||
         !filterValue.length ||
-        filterValue.includes(row[key]?.toString())
+        filterValue.includes(row[key]?.toString()) ||
+        filterValue.includes(row[key])
       );
     });
 
@@ -88,6 +97,8 @@ const AdminDataTable = ({
     }
     return 0;
   });
+
+  console.log('sortedData Data', sortedData);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -213,6 +224,15 @@ const AdminDataTable = ({
                     {column.checkbox ? (
                       <div className={styles.bodyCheckbox}></div>
                     ) : null}
+                    {column.checkboxEnable && (
+                      <CustomCheckbox
+                        label=""
+                        checked={row.isCheck}
+                        style={{ margin: 0 }}
+                        onChange={() => handleCheckBoxValueChange(row)}
+                      />
+                    )}
+
                     {column.editable && isEditable
                       ? (() => {
                           switch (column.editType) {
@@ -376,6 +396,7 @@ const AdminDataTable = ({
       </div>
       <TableFilter
         filters={filters}
+        title={title}
         showPopup={showFilterPopup}
         closePopup={() => setShowFilterPopup(false)}
         handleFilterChange={handleFilterChange}
@@ -396,7 +417,10 @@ AdminDataTable.propTypes = {
   isShadow: PropTypes.bool,
   isEditable: PropTypes.bool,
   handleValueChange: PropTypes.func,
+  openConfirmPopup: PropTypes.func,
   primaryField: PropTypes.string,
+  title: PropTypes.string,
+  handleCheckBoxValueChange: PropTypes.func,
 };
 
 export default AdminDataTable;

@@ -20,7 +20,7 @@ export const columns = [
   {
     accessor: 'date',
     label: 'Date',
-    sortable: true,
+    // sortable: true,
     headerStyle: {
       paddingLeft: 20,
       paddingRight: 20,

@@ -444,3 +444,20 @@ export const getHighJumpResults = async (
     roundType,
   });
 };
+
+export const exportResultsToFile = async (
+  clubID,
+  meetID,
+  format = 'sf_csv',
+  eventIds = undefined,
+  lastUpdated = undefined
+) => {
+  const res = await authApi.post(`/ResultsExport/export`, {
+    clubID,
+    meetID,
+    format,
+    eventIds,
+    lastUpdated,
+  });
+  return res?.data;
+};

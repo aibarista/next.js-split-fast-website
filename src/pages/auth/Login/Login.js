@@ -6,10 +6,8 @@ import styles from './Login.module.css';
 import routes from 'routes';
 
 import { login } from 'api/authApi';
-import { getClubs } from 'api/clubApi';
 import { decodeToken } from 'utils/auth';
 import {
-  getToken,
   setPortalRole,
   setToken,
   setUserEmail,
@@ -78,9 +76,12 @@ const Login = () => {
         );
 
         setUserEmail(storage, formValues.email);
+        const portalRole = decodeToken(token).userRole;
+        setPortalRole(portalRole);
 
         toast.success('Login successfully.');
-        await loadClubs();
+        navigate(routes.admin.dashboard);
+        // await loadClubs();
       } catch (e) {
         console.log('error: ', e);
         toast.error(e.response?.data || 'Login Failed');
@@ -90,31 +91,31 @@ const Login = () => {
     }
   };
 
-  const loadClubs = async () => {
-    try {
-      const response = await getClubs();
+  // const loadClubs = async () => {
+  //   try {
+  //     const response = await getClubs();
 
-      const clubs = response.data;
+  //     const clubs = response.data;
 
-      const token = getToken();
-      const portalRole = decodeToken(token).userRole;
+  //     const token = getToken();
+  //     const portalRole = decodeToken(token).userRole;
 
-      setPortalRole(portalRole);
+  //     setPortalRole(portalRole);
 
-      if (clubs.length > 0) {
-        navigate(routes.admin.dashboard);
-      } else {
-        if (portalRole === 'AccountOwner') {
-          navigate(routes.auth.setupClub);
-        } else {
-          navigate(routes.auth.findClubs);
-        }
-      }
-    } catch (err) {
-      toast.error(err.message);
-      navigate(routes.auth.login);
-    }
-  };
+  //     if (clubs.length > 0) {
+  //       navigate(routes.admin.dashboard);
+  //     } else {
+  //       if (portalRole === 'AccountOwner') {
+  //         navigate(routes.auth.setupClub);
+  //       } else {
+  //         navigate(routes.auth.findClubs);
+  //       }
+  //     }
+  //   } catch (err) {
+  //     toast.error(err.message);
+  //     navigate(routes.auth.login);
+  //   }
+  // };
 
   return (
     <>
