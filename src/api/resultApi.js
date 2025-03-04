@@ -461,3 +461,14 @@ export const exportResultsToFile = async (
   });
   return res?.data;
 };
+
+export const publishResults = async (
+  newPublishingStatus
+) => {
+
+  const res = await authApi.put(`/events/agg-event-status`, {
+    newPublishingStatus
+  });
+  return res?.data;
+
+};

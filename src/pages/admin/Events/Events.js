@@ -21,8 +21,11 @@ import AdminPageOption from 'components/admin/AdminPageOption';
 import { defaultButtonStyle } from 'components/common/CustomButton';
 import EventEditPopup from 'components/admin/EventEditPopup';
 import ResultExportPopup from 'components/admin/ResultsExportPopup/ResultsExportPopup';
+import { useSelector } from 'react-redux';
 
 const Events = ({ isOpenEditPopup = false }) => {
+
+  const { eventStatus } = useSelector((state) => state.event || {});
   const clubRole = getClubRole();
   const { clubId, meetId } = useParams();
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ const Events = ({ isOpenEditPopup = false }) => {
   const [fetchingMeet, setFetchingMeet] = useState(true);
 
   const [optionValues, setOptionValues] = useState({
-    dataType: 'published',
+    dataType: eventStatus,
   });
   const [meet, setMeet] = useState(null);
   const [events, setEvents] = useState([]);

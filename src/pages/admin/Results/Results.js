@@ -21,16 +21,22 @@ import MetaTags from 'components/common/MetaTags';
 import AdminPageHeader from 'components/admin/AdminPageHeader';
 import AdminTablePageLayout from 'components/admin/AdminTablePageLayout';
 import AdminPageOption from 'components/admin/AdminPageOption';
-import { defaultButtonStyle } from 'components/common/CustomButton';
+import CustomButton, { defaultButtonStyle } from 'components/common/CustomButton';
 import ResultEditPopup from 'components/admin/ResultEditPopup';
 import ResultDataTable from 'components/admin/ResultDataTable';
+import { useDispatch } from 'react-redux';
+import { eventStatusUpdate } from 'services/admin/event/eventSlice';
 
 const Results = ({ isOpenEditPopup = false }) => {
   const navigate = useNavigate();
   const clubRole = getClubRole();
+  const dispatch = useDispatch();
 
   const { clubId, eventId, meetId, eventType, ageGroup, gender, roundType } =
     useParams();
+  useEffect(() => {
+    console.log(clubId, eventId, meetId, eventType, ageGroup, gender, roundType)
+  }, [])
 
   const [showEditPopup, setShowEditPopup] = React.useState(isOpenEditPopup);
   const [isPopupReady, setIsPopupReady] = useState(false);
@@ -202,6 +208,7 @@ const Results = ({ isOpenEditPopup = false }) => {
   }, [fetchClubRecords]);
 
   useEffect(() => {
+
     if (events) {
       const event = events.find(
         (event) =>
@@ -210,7 +217,6 @@ const Results = ({ isOpenEditPopup = false }) => {
           event.ageGroup === ageGroup &&
           event.roundType === roundType
       );
-
       if (event) {
         if (event.publishingStatus === 'ClubMembers')
           setResultType('Published');
@@ -218,6 +224,13 @@ const Results = ({ isOpenEditPopup = false }) => {
       }
     }
   }, [events, eventType, ageGroup, gender, roundType]);
+
+  const publishPendingResult = () => {
+    /**call the api */
+    
+    dispatch(eventStatusUpdate("published"));
+    navigate(routes.admin.events.url(clubId, meetId));
+  }
 
   return (
     <>
@@ -234,7 +247,7 @@ const Results = ({ isOpenEditPopup = false }) => {
         <AdminPageHeader
           title={
             eventType && ageGroup && gender && roundType
-              ? `Results for ${gender} ${ageGroup} ${eventType} ${roundType}`
+              ? `${clubRole === "Admin" || "Owner" ? resultType : "Results"} for ${gender} ${ageGroup} ${eventType} ${roundType}`
               : 'Results'
           }
           showNumber={false}
@@ -253,6 +266,7 @@ const Results = ({ isOpenEditPopup = false }) => {
             height: 'unset',
           }}
           handleButton={() => {
+            dispatch(eventStatusUpdate("published"));
             navigate(routes.admin.events.url(clubId, meetId));
           }}
           style={{
@@ -275,20 +289,65 @@ const Results = ({ isOpenEditPopup = false }) => {
             - {convertDateTime(clubRecord?.achievedAt).date}
           </div>
         ))}
-        <AdminPageOption
-          hasButton={clubRole !== 'Member'}
-          buttonLabel="Edit Results"
-          buttonStyle={{
-            ...defaultButtonStyle,
-            marginBottom: 0,
-            height: 'unset',
-            padding: '10px 20px',
-          }}
-          buttonDisabled={!isPopupReady}
-          handleButton={openEditPopup}
-        />
+        {
+          resultType === "Pending" ? (
+            <div className={styles.pendingTableOption}>
+              <div
+                className={styles.pendingBackLink}
+                onClick={() => {
+                  dispatch(eventStatusUpdate("pending"));
+                  navigate(routes.admin.events.url(clubId, meetId));
+                }}
+              >
+                {`Back to Pending Results - ${meet ? `${meet?.meetName}` : ""}`}
+              </div>
+              <div className={styles.buttonContainer}>
+                <CustomButton
+                  style={{
+                    ...defaultButtonStyle,
+                    marginBottom: 0,
+                    height: 'unset',
+                    padding: '10px 20px',
+                    maxWidth: 'max-content',
+                    backgroundColor: "gray"
+                  }}
+
+                  onClick={publishPendingResult}
+                >
+                  Publish Results
+                </CustomButton>
+                <CustomButton
+                  style={{
+                    ...defaultButtonStyle,
+                    marginBottom: 0,
+                    height: 'unset',
+                    padding: '10px 20px',
+                    maxWidth: 'max-content'
+                  }}
+                  onClick={openEditPopup}
+                >
+                  Edit Results
+                </CustomButton>
+              </div>
+            </div>
+          ) : (
+            <AdminPageOption
+              hasButton={clubRole !== 'Member'}
+              buttonLabel="Edit Results"
+              buttonStyle={{
+                ...defaultButtonStyle,
+                marginBottom: 0,
+                height: 'unset',
+                padding: '10px 20px',
+              }}
+              buttonDisabled={!isPopupReady}
+              handleButton={openEditPopup}
+            />
+          )
+        }
+
         <ResultDataTable results={results} eventType={eventType} />
-      </AdminTablePageLayout>
+      </AdminTablePageLayout >
       {clubRole !== 'Member' && (
         <ResultEditPopup
           resultType={resultType}
@@ -310,7 +369,8 @@ const Results = ({ isOpenEditPopup = false }) => {
           closePopup={closeEditPopup}
           refreshResults={fetchResults}
         />
-      )}
+      )
+      }
     </>
   );
 };
